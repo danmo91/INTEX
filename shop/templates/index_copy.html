@@ -1,0 +1,39 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+
+<%
+  print(login_required)
+
+%>
+
+
+% if login_required:
+  <div id="login_alert" class="alert alert-success alert-dismissible col-sm-2" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Please login to checkout
+  </div>
+
+% endif
+
+<div class="items">
+
+  %for item in items:
+
+    <div class="item_containter">
+
+      <a href="/shop/item_detail/${ item.id }" >${ item.name }</a>
+      <img class="item_image" src="${ STATIC_URL }shop/media/product_images/${ item.id}.jpg" />
+      <button data-pid="${ item.id}" class="btn btn-warning add_to_cart" type="submit">Add To Cart</button>
+
+
+
+    </div>
+  %endfor
+
+</div>
+
+
+
+</%block>

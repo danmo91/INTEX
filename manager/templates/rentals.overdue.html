@@ -1,0 +1,37 @@
+<%inherit file="base_ajax.htm" />
+
+<%block name="content">
+
+  <table class="table table-striped">
+
+    <thead>
+      <th>Rental</th>
+      <th>Rental Date</th>
+      <th>Due Date</th>
+    </thead>
+
+    <tbody>
+
+      %for item in items:
+
+        <tr>
+
+          <td>${ item.description }</td>
+          <td>${ item.rental_date }</td>
+          <td>${ item.due_date }</td>
+
+        </tr>
+
+      %endfor
+
+    </tbody>
+
+    <tfoot>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tfoot>
+
+  </table>
+
+</%block>

@@ -1,0 +1,71 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<%! from django_mako_plus.controller import static_files %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+
+    <title>Colonial Heritage Foundation</title>
+
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- ajax jquery form plugin -->
+
+    <script src="${ STATIC_URL}base/media/jquery.form.js"></script>
+    <script src="${ STATIC_URL}base/media/jquery.loadmodal.js"></script>
+
+    <!-- bootstrap plugins -->
+    <script src="${ STATIC_URL}base/media/bootstrap-notify.js"></script>
+    <link rel="stylesheet" href="${ STATIC_URL}base/media/animate.css">
+    
+
+    <!-- login page plugins -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <%block name="head_links">
+      <!-- App specific head links can be organized into here -->
+    </%block>
+
+    ## render the css with the same name as this page
+    ${ static_renderer.get_template_css(request, context)  }
+
+  </head>
+  <body>
+
+    <%block name="homepage">
+
+    </%block>
+
+    <%block name="shop">
+
+    </%block>
+
+    <%block name="admin">
+
+    </%block>
+
+    <%block name="foot_links">
+
+    </%block>
+
+    ## render the JS with the same name as this page
+    ${ static_renderer.get_template_js(request, context)  }
+
+  </body>
+</html>

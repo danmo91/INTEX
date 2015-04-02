@@ -1,0 +1,77 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+  <h1>Receipt</h1>
+
+  <h3>
+    Thank you for shopping with us!
+  </h3>
+
+
+
+  <p>
+    Order Summary:
+  </p>
+  <div class="items">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+
+    <% total = 0 %>
+
+    <tbody>
+
+    %for key,value in items.items():
+
+    <%
+      price = int(value[0].value)
+      qty = value[1]
+
+      sub_total =  price * qty
+      total += sub_total
+    %>
+
+
+
+        <tr>
+          <td>${ value[0].name }</td>
+          <td>
+
+            ${ value[1] }
+
+          </td>
+          <td>$${ value[0].value }</td>
+          <td>$${ sub_total }</td>
+        </tr>
+
+
+
+    %endfor
+    </tbody>
+
+
+      <tfoot>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td id="total_row">$${ total }</td>
+        </tr>
+      </tfoot>
+
+
+    </table>
+
+  </div>
+
+
+</%block>

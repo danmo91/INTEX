@@ -1,0 +1,64 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+<div class="container">
+	<div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled"><a href="#step-1"
+                    <h4 class="list-group-item-heading">Step 1</h4>
+                    <p class="list-group-item-text">Confirm Order</p>
+                </a></li>
+                <li class="active"><a href="#step-2">
+                    <h4 class="list-group-item-heading">Step 2</h4>
+                    <p class="list-group-item-text">Enter Payment</p>
+                </a></li>
+                <li class="disabled"><a href="#step-3">
+                    <h4 class="list-group-item-heading">Step 3</h4>
+                    <p class="list-group-item-text">Third step description</p>
+                </a></li>
+            </ul>
+        </div>
+	</div>
+</div>
+
+<div class="container">
+
+	<div class="row">
+
+		<form id="checkoutform" method="POST" action="/shop/receipt/">
+			<div class="col-lg-4 col-lg-offset-4 col-md-8 col-sm-6 col-xs-12">
+
+				<div class="form-group">
+
+					%for field in form:
+						${ field }
+					%endfor
+
+				</div>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Continue</button>
+			</div>
+		</form>
+
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+</%block>
+
+<%block name="foot_links">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+
+</%block>
