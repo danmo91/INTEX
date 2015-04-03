@@ -71,6 +71,7 @@ def edit(request):
             rental.due_date = form.cleaned_data['due_date']
 
 
+
             rental.save()
 
             # send to event list page

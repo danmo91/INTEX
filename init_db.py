@@ -185,19 +185,19 @@ for data in [
 #Delete old items
 hmod.Item.objects.all().delete()
 
-#Create new items: name, description, value
+#Create new items: name, description, value, rental_price
 for data in [
-  ['Knife' , 'Stabbed Julius Caesar.  Still soaked with blood', '999.99'],
-  ['Rope' , 'Judas Iscariot hung himself with this rope', '1.15'],
-  ['Backpack' , 'From Cotopaxi, features real llama fit.  Really, its nice', '29.50'],
-  ['Canteen' , '12 oz. of this stuff will quench your thirst for a while', '5.55'],
+  ['Knife' , 'Stabbed Julius Caesar.  Still soaked with blood', '999.99', '9.99'],
+  ['Rope' , 'Judas Iscariot hung himself with this rope', '1.15', '1.99'],
+  ['Backpack' , 'From Cotopaxi, features real llama fit.  Really, its nice', '29.50', '12.99'],
+  ['Canteen' , '12 oz. of this stuff will quench your thirst for a while', '5.55', '5.99'],
 ]:
 
     i = hmod.Item()
     i.name = data[0]
     i.description = data[1]
-
     i.value = data[2]
+    i.rental_price = data[3]
 
     i.save()
 
@@ -228,12 +228,12 @@ for data in [
 #Delete old Rentals
 hmod.Rental.objects.all().delete()
 
-#Create new Rentals: description,rental_date,due_date
+#Create new Rentals: description,rental_date,due_date, user
 for data in [
-  ['Pony Ride', '2015-03-06', '2014-03-06'],
-  ['Icecream Maker', '2015-03-06', '2015-03-06'],
-  ['Colonial Flag', '2015-03-06', '2015-03-06'],
-  ['Abicus', '2015-03-06', '2015-03-06'],
+  ['Pony Ride', '2015-03-06', '2014-03-06', '1'],
+  ['Icecream Maker', '2015-03-06', '2015-03-06', '1'],
+  ['Colonial Flag', '2015-03-06', '2015-03-06', '1'],
+  ['Abicus', '2015-03-06', '2015-03-06', '1'],
 
 ]:
 
@@ -241,6 +241,8 @@ for data in [
     r.description = data[0]
     r.rental_date = data[1]
     r.due_date = data[2]
+    user = hmod.User.objects.get(id=data[3])
+    r.user = user
 
     print('Rental:', r)
 

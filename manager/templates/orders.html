@@ -18,6 +18,7 @@
   				<th>Order Date</th>
   				<th>Total</th>
   				<th>User</th>
+  				<th>Charge ID</th>
           <th>Actions</th>
   			</tr>
       </thead>
@@ -28,6 +29,7 @@
             <td>${ order.order_date }</td>
             <td>$${ order.total }</td>
             <td>${ order.user }</td>
+            <td>${ order.charge_id }</td>
             <td>
               <a href="/manager/orders.edit/${order.id}"/> Edit </a>
               |

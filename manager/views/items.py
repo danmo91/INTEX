@@ -60,6 +60,7 @@ def edit(request):
         'name' : item.name,
         'description': item.description,
         'value': item.value,
+        'rental_price': item.rental_price,
 
     })
 
@@ -77,6 +78,7 @@ def edit(request):
             item.name = form.cleaned_data['name']
             item.description = form.cleaned_data['description']
             item.value = form.cleaned_data['value']
+            item.rental_price = form.cleaned_data['rental_price']
 
 
             item.save()
@@ -116,3 +118,4 @@ class ItemEditForm(forms.Form):
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Lightsaber'}))
     description = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Used by Darth Vader'}))
     value = forms.DecimalField(max_digits=7,decimal_places=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '999.99'}))
+    rental_price = forms.DecimalField(max_digits=7,decimal_places=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '9.99'}))

@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1427439082.273271
+_modified_time = 1428025077.986676
 _enable_loop = True
 _template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/items.html'
 _template_uri = 'items.html'
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        items = context.get('items', UNDEFINED)
         def center():
             return render_center(context._locals(__M_locals))
+        items = context.get('items', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'center'):
@@ -46,11 +46,11 @@ def render_body(context,**pageargs):
 def render_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        items = context.get('items', UNDEFINED)
         def center():
             return render_center(context)
+        items = context.get('items', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n\n    <div class="jumbotron">\n      <div class="container">\n        <h1>Items</h1>\n      </div>\n    </div>\n\n\n    <a href="/manager/items.create/" id="btn_create" class="btn btn-success pull-right create">Create new item</a>\n\n\t\t<table class="table table-striped table-bordered table-hover">\n\n      <thead>\n\n        <tr>\n          <th>Name</th>\n          <th>Description</th>\n          <th>Value</th>\n          <th>Actions</th>\n        </tr>\n\n      </thead>\n\n      <tbody>\n\n')
+        __M_writer('\n\n    <div class="jumbotron">\n      <div class="container">\n        <h1>Items</h1>\n      </div>\n    </div>\n\n\n    <a href="/manager/items.create/" id="btn_create" class="btn btn-success pull-right create">Create new item</a>\n\n\t\t<table class="table table-striped table-bordered table-hover">\n\n      <thead>\n\n        <tr>\n          <th>Name</th>\n          <th>Description</th>\n          <th>Value</th>\n          <th>Rental Price</th>\n          <th>Actions</th>\n        </tr>\n\n      </thead>\n\n      <tbody>\n\n')
         for item in items:
             __M_writer('  \t\t\t\t<tr>\n  \t\t\t\t\t<td>')
             __M_writer(str( item.name ))
@@ -58,6 +58,8 @@ def render_center(context,**pageargs):
             __M_writer(str( item.description ))
             __M_writer('</td>\n  \t\t\t\t\t<td>$')
             __M_writer(str( item.value ))
+            __M_writer('</td>\n  \t\t\t\t\t<td>$')
+            __M_writer(str( item.rental_price ))
             __M_writer('</td>\n  \t\t\t\t\t<td>\n  \t\t\t\t\t\t<a href="/manager/items.edit/')
             __M_writer(str(item.id))
             __M_writer('"/> Edit </a>\n  \t\t\t\t\t\t|\n  \t\t\t\t\t\t<a href="/manager/items.delete/')
@@ -71,6 +73,6 @@ def render_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"64": 37, "65": 37, "66": 43, "35": 1, "40": 48, "46": 3, "59": 32, "72": 66, "53": 3, "54": 29, "55": 30, "56": 31, "57": 31, "58": 32, "27": 0, "60": 33, "61": 33, "62": 35, "63": 35}, "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/items.html", "uri": "items.html", "source_encoding": "ascii"}
+{"uri": "items.html", "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/items.html", "source_encoding": "ascii", "line_map": {"64": 37, "65": 37, "66": 39, "35": 1, "68": 45, "40": 50, "74": 68, "46": 3, "59": 33, "67": 39, "53": 3, "54": 30, "55": 31, "56": 32, "57": 32, "58": 33, "27": 0, "60": 34, "61": 34, "62": 35, "63": 35}}
 __M_END_METADATA
 """

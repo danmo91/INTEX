@@ -58,6 +58,7 @@ class Item(models.Model):
     name = models.TextField(max_length=100, null=True)
     description = models.TextField(max_length=500, null=True)
     value = models.DecimalField(max_digits=7,decimal_places=2, null=True)
+    rental_price = models.DecimalField(max_digits=7,decimal_places=2, null=True)
 
     def __str__(self):
         return self.name + ': ' + str(self.value)
@@ -70,12 +71,17 @@ class Product(models.Model):
     current_price = models.DecimalField(max_digits=7,decimal_places=2, null=True)
 
     def __str__(self):
-        return self.name + ': ' + self.current_price
+        return self.name + ': ' + str(self.current_price)
 
 class Rental(models.Model):
     description = models.TextField(max_length=500, null=True)
     rental_date = models.DateField(null=True)
     due_date = models.DateField(null=True)
+    return_date = models.DateField(null=True)
+    damages = models.TextField(max_length=500, null=True)
+    available = models.BooleanField(default = True)
+    user = models.ForeignKey(User, null=True)
+    charge_id = models.TextField(null=True)
 
     def __str__(self):
         return 'Rental: ' + self.description + ', Due Date: ' + str(self.due_date)
@@ -84,6 +90,17 @@ class Order(models.Model):
     order_date = models.DateField(null=True)
     total = models.DecimalField(max_digits=7,decimal_places=2, null=True)
     user = models.ForeignKey(User, null=True)
+    charge_id = models.TextField(null=True)
 
     def __str__(self):
         return 'Order for: ' + self.user.first_name + ' ' + self.user.last_name
+
+class Address(models.Model):
+    street = models.TextField(null=True)
+    city = models.TextField(null=True)
+    state = models.TextField(null=True)
+    zip_code = models.TextField(null=True)
+    user = models.ForeignKey(User, null=True)
+
+    def __str__(self):
+        return self.street + ', ' + self.city + ', ' + self.state + ' ' + self.zip_code + ' user: ' + str(self.user)

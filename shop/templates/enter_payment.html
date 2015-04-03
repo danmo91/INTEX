@@ -1,5 +1,9 @@
 <%inherit file="base.htm" />
 
+<%block name="header">
+
+</%block>
+
 <%block name="center">
 
 <div class="container">
@@ -16,7 +20,7 @@
                 </a></li>
                 <li class="disabled"><a href="#step-3">
                     <h4 class="list-group-item-heading">Step 3</h4>
-                    <p class="list-group-item-text">Third step description</p>
+                    <p class="list-group-item-text">Thank You</p>
                 </a></li>
             </ul>
         </div>
@@ -27,13 +31,14 @@
 
 	<div class="row">
 
-		<form id="checkoutform" method="POST" action="/shop/receipt/">
+		<form id="checkoutform" method="POST">
 			<div class="col-lg-4 col-lg-offset-4 col-md-8 col-sm-6 col-xs-12">
 
 				<div class="form-group">
 
 					%for field in form:
 						${ field }
+						${ field.errors }
 					%endfor
 
 				</div>
