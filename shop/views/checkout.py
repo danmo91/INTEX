@@ -35,8 +35,6 @@ def process_request(request):
 
         item_ids = request.session['shopping_cart']
 
-
-
         for key,value in item_ids.items():
 
             item = hmod.Product.objects.get(id = key)
@@ -69,7 +67,12 @@ def enter_payment(request):
 
     params = {}
 
-    form = CheckoutForm()
+    form = CheckoutForm(initial = {
+        'creditcard' : '4732817300654',
+        'exp_month' : '10',
+        'exp_year' : '15',
+        'cvc' : '411',
+    })
 
     if request.method == 'POST':
 
@@ -77,6 +80,13 @@ def enter_payment(request):
         form = CheckoutForm(request.POST)
 
         if form.is_valid():
+
+            request.session['credit_card'] = {
+                'creditcard' : '4732817300654',
+                'exp_month' : '10',
+                'exp_year' : '15',
+                'cvc' : '411',
+            }
 
             # check if user has an address
             user = hmod.User.objects.get(id=request.user.id)
@@ -106,16 +116,23 @@ def enter_payment(request):
 
 def get_total(request):
 
-    # get list of items in shopping_cart
-    product_ids = request.session['shopping_cart']
-
     total = 0
 
-    for product_id in product_ids:
-        product = hmod.Product.objects.get(id=product_id)
-        total += product.current_price
+    # get list of items in shopping_cart
+    if 'shopping_cart' in request.session:
+        product_ids = request.session['shopping_cart']
+
+        for product_id in product_ids:
+            product = hmod.Product.objects.get(id=product_id)
+            total += product.current_price
 
     # don't forget rental_cart
+    if 'rental_cart' in request.session:
+        rental_ids = request.session['rental_cart']
+
+        for rental_id in rental_ids:
+            rental = hmod.Item.objects.get(id=rental_id)
+            total += rental.rental_price
 
     return total
 
@@ -133,17 +150,22 @@ def charge_card(request):
     API_URL = 'http://dithers.cs.byu.edu/iscore/api/v1/charges'
     API_KEY = 'aa846fb6f04d54c4b952561399e40d84'
 
-    print("API_KEY:", API_KEY)
+    creditcard = request.session['credit_card']['creditcard']
+    exp_month = request.session['credit_card']['exp_month']
+    exp_year = request.session['credit_card']['exp_year']
+    cvc = request.session['credit_card']['cvc']
+
+    del request.session['credit_card']
 
     r = requests.post(API_URL, data={
-        'apiKey': 'aa846fb6f04d54c4b952561399e40d84',
+        'apiKey': API_KEY,
         'currency': 'usd',
-        'amount': '5.99', # my total
+        'amount': get_total(request), # my total
         'type': 'Visa',
-        'number': '4732817300654',
-        'exp_month': '10',
-        'exp_year': '15',
-        'cvc': '411',
+        'number': creditcard,
+        'exp_month': exp_month,
+        'exp_year': exp_year,
+        'cvc': cvc,
         'name': 'Cosmo Limesandal',
         'description': 'Charge for cosmo@is411@byu.edu',
     })
@@ -234,6 +256,8 @@ def receipt(request):
 
         for rental_id in rental_ids:
             rental = hmod.Item.objects.get(id=rental_id)
+            rental.available = False
+            rental.save()
             rentals.append(rental)
 
         # delete rental_cart
@@ -264,5 +288,6 @@ class CheckoutForm(forms.Form):
 
     zip_code = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'zip'}))
     creditcard = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'credit card number'}))
-    expiration = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'expiration mm/yy'}))
+    exp_month = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'exp. month "mm"'}))
+    exp_year = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'exp. year "yy"'}))
     cvc = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'cvc'}))

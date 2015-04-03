@@ -48,7 +48,7 @@ def rentals(request):
 
     #Get list of all rental items
 
-    items = hmod.Item.objects.all()
+    items = hmod.Item.objects.filter(available = True)
 
     #Pass list of items to template
     params['items'] = items

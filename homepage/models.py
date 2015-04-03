@@ -59,6 +59,7 @@ class Item(models.Model):
     description = models.TextField(max_length=500, null=True)
     value = models.DecimalField(max_digits=7,decimal_places=2, null=True)
     rental_price = models.DecimalField(max_digits=7,decimal_places=2, null=True)
+    available = models.BooleanField(default = True)
 
     def __str__(self):
         return self.name + ': ' + str(self.value)
@@ -79,7 +80,6 @@ class Rental(models.Model):
     due_date = models.DateField(null=True)
     return_date = models.DateField(null=True)
     damages = models.TextField(max_length=500, null=True)
-    available = models.BooleanField(default = True)
     user = models.ForeignKey(User, null=True)
     charge_id = models.TextField(null=True)
 
