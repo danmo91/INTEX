@@ -145,11 +145,7 @@ def overdue(request):
 
     return templater.render_to_response(request, 'rentals.overdue.html', params)
 
-@view_function
-def email(request):
-    params = {}
 
-    return templater.render_to_response(request, '/homepage/', params)
 
 
 class RentalEditForm(forms.Form):

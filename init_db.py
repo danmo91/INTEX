@@ -82,9 +82,9 @@ hmod.User.objects.all().delete()
 #Create new users: username, password, first_name, last_name, is_superuser, group, full_name, email
 for data in [
   ['danmo91', 'password', 'Dan', 'Morain', True, True, 'Admin', 'Dan Morain', 'dan.morain91@gmail.com'],
-  ['mojok13', 'password', 'Morgs', 'Kap', False, True, 'Manager', 'Morgs Kap', 'dan.morain91@gmail.com'],
-  ['breezy', 'password', 'Bri', 'Sor', False, False, 'Guest', 'Bri Sor', 'dan.morain91@gmail.com'],
-  ['urge', 'password', 'Rj', 'Smith', False, False, 'Guest', 'Rj Smith', 'dan.morain91@gmail.com'],
+  ['mojok13', 'password', 'Morgs', 'Kap', False, True, 'Manager', 'Morgs Kap', 'mojo@gmail.com'],
+  ['breezy', 'password', 'Bri', 'Sor', False, False, 'Guest', 'Bri Sor', 'breezy@gmail.com'],
+  ['urge', 'password', 'Rj', 'Smith', False, False, 'Guest', 'Rj Smith', 'urge@gmail.com'],
 ]:
 
     #set attributes

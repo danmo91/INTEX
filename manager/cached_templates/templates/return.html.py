@@ -4,10 +4,10 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428160016.636195
+_modified_time = 1428160706.388173
 _enable_loop = True
-_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/return4.html'
-_template_uri = 'return4.html'
+_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/return.html'
+_template_uri = 'return.html'
 _source_encoding = 'ascii'
 import os, os.path, re
 _exports = ['center']
@@ -50,7 +50,7 @@ def render_center(context,**pageargs):
             return render_center(context)
         rentals = context.get('rentals', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n\n<div class="jumbotron">\n  <div class="container">\n    <h1>Rentals</h1>\n  </div>\n</div>\n\n\n\n<div class="container">\n\n    <a class=\'btn btn-primary pull-right\' href="/manager/return.email/" id="email_button" >Send Email to Overdue Rentals</a>\n\n    <table class="table table-striped table-bordered table-hover display" id="">\n\n      <thead>\n\n        <tr>\n                  <th>Item</th>\n                  <th>Rental Date</th>\n                  <th>Due Date</th>\n                  <th>Return Date</th>\n                  <th>Customer</th>\n                  <th>Actions</th>\n              </tr>\n\n      </thead>\n\n      <tbody>\n\n')
+        __M_writer('\n\n<div class="jumbotron">\n  <div class="container">\n    <h1>Rentals</h1>\n  </div>\n</div>\n\n\n\n<div class="container">\n\n    <a class=\'btn btn-primary pull-right\' id="email_button" >Send Email to Overdue Rentals</a>\n\n    <table class="table table-striped table-bordered table-hover display" id="">\n\n      <thead>\n\n        <tr>\n                  <th>Item</th>\n                  <th>Rental Date</th>\n                  <th>Due Date</th>\n                  <th>Return Date</th>\n                  <th>Customer</th>\n                  <th>Actions</th>\n              </tr>\n\n      </thead>\n\n      <tbody>\n\n')
         for rental in rentals:
             __M_writer('                  <tr>\n                      <td>')
             __M_writer(str( rental.description ))
@@ -78,6 +78,6 @@ def render_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/return4.html", "uri": "return4.html", "line_map": {"64": 41, "65": 42, "66": 42, "67": 42, "68": 44, "69": 45, "70": 48, "71": 49, "72": 49, "73": 53, "79": 73, "27": 0, "35": 1, "40": 60, "46": 3, "53": 3, "54": 34, "55": 35, "56": 36, "57": 36, "58": 37, "59": 37, "60": 38, "61": 38, "62": 39, "63": 39}, "source_encoding": "ascii"}
+{"source_encoding": "ascii", "line_map": {"64": 41, "65": 42, "66": 42, "67": 42, "68": 44, "69": 45, "70": 48, "71": 49, "72": 49, "73": 53, "79": 73, "27": 0, "35": 1, "40": 60, "46": 3, "53": 3, "54": 34, "55": 35, "56": 36, "57": 36, "58": 37, "59": 37, "60": 38, "61": 38, "62": 39, "63": 39}, "uri": "return.html", "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/return.html"}
 __M_END_METADATA
 """

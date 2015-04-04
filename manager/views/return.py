@@ -2,6 +2,7 @@ from django_mako_plus.controller.router import get_renderer
 from django_mako_plus.controller import view_function
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from datetimewidget.widgets import DateWidget
+from django.core.mail import send_mail, EmailMessage
 import datetime
 from django import forms
 import homepage.models as hmod
@@ -19,7 +20,8 @@ def process_request(request):
 
     params['rentals'] = rentals
 
-    return templater.render_to_response(request, 'return4.html', params)
+    return templater.render_to_response(request, 'return.html', params)
+
 
 @view_function
 def return_form(request):
@@ -46,6 +48,11 @@ def return_form(request):
             rental.returned = True
             rental.save()
 
+            if rental.item:
+                item = rental.item
+                item.available = True
+                item.save()
+
             # user = rental.user
             # if not form.cleaned_data['late_fee_waived']:
             #     Decimal.add(user.account_balance, late_fee)
@@ -68,6 +75,56 @@ def return_form(request):
     params['rental'] = rental
 
     return templater.render_to_response(request, 'return_form.html', params)
+
+@view_function
+def send_email(request):
+    params = {}
+
+    # get list of overdue rentals
+    start = datetime.date.today() - datetime.timedelta(days=365)
+    end = datetime.date.today() - datetime.timedelta(days=1)
+    overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
+    print('over_due:', overdue_rentals)
+
+
+    # get users emails
+    user_emails = []
+    for rental in overdue_rentals:
+        if rental.user:
+            if rental.user.email != '':
+                if rental.user.email not in user_emails:
+                    user_emails.append(rental.user.email)
+
+    print('user_emails:', user_emails)
+
+    # send email to each user
+    if user_emails:
+        for email in user_emails:
+
+            # get list of over_due rentals
+            user = hmod.User.objects.get(email=email)
+            rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False, user = user)
+            params['rentals'] = rentals
+            params['date'] = datetime.date.today()
+            params['user'] = user.full_name
+
+
+            #Send Email
+            if  email != '':
+                subject = "Your Rental is Overdue"
+                to = [email]
+                from_email = 'dan.morain91@gmail.com'
+
+                message = templater.render(request, 'overdue_email.html', params)
+
+                msg = EmailMessage(subject, message, to=to, from_email=from_email)
+                msg.content_subtype = 'html'
+                msg.send()
+
+        return HttpResponse('1')
+
+
+    return HttpResponse('0')
 
 
 class ReturnForm(forms.Form):
