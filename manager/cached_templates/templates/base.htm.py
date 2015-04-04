@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1427923459.060924
+_modified_time = 1428117754.894154
 _enable_loop = True
 _template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/base.htm'
 _template_uri = 'base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['foot_links', 'header', 'center', 'admin', 'footer', 'head_links']
+_exports = ['admin', 'foot_links', 'center', 'header', 'head_links', 'footer']
 
 
 def _mako_get_namespace(context, name):
@@ -28,18 +28,18 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def foot_links():
-            return render_foot_links(context._locals(__M_locals))
-        def header():
-            return render_header(context._locals(__M_locals))
-        def center():
-            return render_center(context._locals(__M_locals))
         def admin():
             return render_admin(context._locals(__M_locals))
-        def footer():
-            return render_footer(context._locals(__M_locals))
+        def foot_links():
+            return render_foot_links(context._locals(__M_locals))
+        def center():
+            return render_center(context._locals(__M_locals))
+        def header():
+            return render_header(context._locals(__M_locals))
         def head_links():
             return render_head_links(context._locals(__M_locals))
+        def footer():
+            return render_footer(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n<!-- CSS/JS Links that belong only to the homepage app -->\n')
@@ -63,13 +63,59 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_admin(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def admin():
+            return render_admin(context)
+        def center():
+            return render_center(context)
+        def header():
+            return render_header(context)
+        def footer():
+            return render_footer(context)
+        request = context.get('request', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n\n\n  ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'header'):
+            context['self'].header(**pageargs)
+        
+
+        __M_writer(' <!-- header -->\n\n\n  ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'center'):
+            context['self'].center(**pageargs)
+        
+
+        __M_writer(' <!-- center -->\n\n\n\n  ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'footer'):
+            context['self'].footer(**pageargs)
+        
+
+        __M_writer(' <!-- footer -->\n\n\n\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_foot_links(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         def foot_links():
             return render_foot_links(context)
         __M_writer = context.writer()
-        __M_writer('\n\n')
+        __M_writer('\n\n<!-- DataTables -->\n<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_center(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def center():
+            return render_center(context)
+        __M_writer = context.writer()
+        __M_writer('\n\n  ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -98,47 +144,13 @@ def render_header(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_center(context,**pageargs):
+def render_head_links(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def center():
-            return render_center(context)
+        def head_links():
+            return render_head_links(context)
         __M_writer = context.writer()
-        __M_writer('\n\n  ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_admin(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def admin():
-            return render_admin(context)
-        def header():
-            return render_header(context)
-        def center():
-            return render_center(context)
-        request = context.get('request', UNDEFINED)
-        def footer():
-            return render_footer(context)
-        __M_writer = context.writer()
-        __M_writer('\n\n\n  ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'header'):
-            context['self'].header(**pageargs)
-        
-
-        __M_writer(' <!-- header -->\n\n\n  ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'center'):
-            context['self'].center(**pageargs)
-        
-
-        __M_writer(' <!-- center -->\n\n\n\n  ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'footer'):
-            context['self'].footer(**pageargs)
-        
-
-        __M_writer(' <!-- footer -->\n\n\n\n\n')
+        __M_writer('\n\n<!-- DataTables CSS -->\n<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.css">\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -156,20 +168,8 @@ def render_footer(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_head_links(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def head_links():
-            return render_head_links(context)
-        __M_writer = context.writer()
-        __M_writer('\n\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/base.htm", "source_encoding": "ascii", "uri": "base.htm", "line_map": {"66": 103, "131": 80, "72": 103, "141": 96, "78": 11, "147": 89, "85": 11, "86": 33, "87": 34, "88": 49, "89": 61, "90": 62, "91": 64, "92": 64, "93": 66, "94": 67, "95": 71, "165": 4, "27": 0, "101": 83, "171": 165, "107": 83, "45": 1, "113": 8, "50": 6, "55": 101, "153": 89, "136": 85, "159": 4, "60": 105, "126": 8}}
+{"line_map": {"66": 11, "131": 14, "132": 36, "133": 37, "134": 52, "135": 64, "136": 65, "137": 67, "138": 67, "139": 69, "140": 70, "141": 74, "79": 11, "147": 4, "84": 83, "153": 4, "89": 88, "27": 0, "94": 99, "159": 92, "100": 106, "165": 92, "60": 111, "106": 106, "171": 165, "45": 1, "112": 86, "50": 9, "118": 86, "55": 104, "124": 14}, "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/base.htm", "source_encoding": "ascii", "uri": "base.htm"}
 __M_END_METADATA
 """

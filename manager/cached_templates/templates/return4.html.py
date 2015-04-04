@@ -4,10 +4,10 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428093964.419537
+_modified_time = 1428123497.2018
 _enable_loop = True
-_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/rentals.html'
-_template_uri = 'rentals.html'
+_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/return4.html'
+_template_uri = 'return4.html'
 _source_encoding = 'ascii'
 import os, os.path, re
 _exports = ['center']
@@ -50,15 +50,15 @@ def render_center(context,**pageargs):
             return render_center(context)
         rentals = context.get('rentals', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n\n    <div class="jumbotron">\n      <div class="container">\n        <h1>Rentals</h1>\n      </div>\n    </div>\n\n\n    <a href="/manager/rentals.create/" id="btn_create" class="btn btn-success pull-right create">Create new rental</a>\n\n\t\t<table class="table table-striped table-bordered table-hover">\n\n      <thead>\n\n        <tr>\n  \t\t\t\t<th>Item</th>\n  \t\t\t\t<th>Rental Date</th>\n  \t\t\t\t<th>Due Date</th>\n  \t\t\t\t<th>Return Date</th>\n  \t\t\t\t<th>Customer</th>\n  \t\t\t\t<th>Actions</th>\n  \t\t\t</tr>\n\n      </thead>\n\n      <tbody>\n\n')
+        __M_writer('\n\n<div class="jumbotron">\n  <div class="container">\n    <h1>Rentals</h1>\n  </div>\n</div>\n\n<div class="container">\n\n    <table class="table table-striped table-bordered table-hover display" id="">\n\n      <thead>\n\n        <tr>\n                  <th>Item</th>\n                  <th>Rental Date</th>\n                  <th>Due Date</th>\n                  <th>Return Date</th>\n                  <th>Customer</th>\n                  <th>Actions</th>\n              </tr>\n\n      </thead>\n\n      <tbody>\n\n')
         for rental in rentals:
-            __M_writer('  \t\t\t\t<tr>\n  \t\t\t\t\t<td>')
+            __M_writer('                  <tr>\n                      <td>')
             __M_writer(str( rental.description ))
-            __M_writer('</td>\n  \t\t\t\t\t<td>')
+            __M_writer('</td>\n                      <td>')
             __M_writer(str( rental.rental_date ))
-            __M_writer('</td>\n  \t\t\t\t\t<td>')
+            __M_writer('</td>\n                      <td>')
             __M_writer(str( rental.due_date ))
-            __M_writer('</td>\n  \t\t\t\t\t<td>')
+            __M_writer('</td>\n                      <td>')
             __M_writer(str( rental.return_date ))
             __M_writer('</td>\n\n')
             if rental.user is not None:
@@ -67,12 +67,10 @@ def render_center(context,**pageargs):
                 __M_writer('</td>\n\n')
             else:
                 __M_writer('            <td>None</td>\n\n')
-            __M_writer('\n\n  \t\t\t\t\t<td>\n  \t\t\t\t\t\t<a href="/manager/rentals.edit/')
+            __M_writer("                      <td>\n                          <a data-id ='")
             __M_writer(str(rental.id))
-            __M_writer('"/> Edit </a>\n  \t\t\t\t\t\t|\n  \t\t\t\t\t\t<a href="/manager/rentals.delete/')
-            __M_writer(str(rental.id))
-            __M_writer('"> Delete </a>\n\n  \t\t\t\t\t</td>\n  \t\t\t\t</tr>\n')
-        __M_writer('\n      </tbody>\n\n\t\t</table>\n\n')
+            __M_writer('\' class="btn btn-danger return"/> Return </a>\n                      </td>\n                  </tr>\n')
+        __M_writer('\n      </tbody>\n\n    </table>\n\n</div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -80,6 +78,6 @@ def render_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/rentals.html", "line_map": {"64": 38, "65": 39, "66": 39, "67": 39, "68": 41, "69": 42, "70": 45, "71": 48, "72": 48, "73": 50, "74": 50, "75": 55, "81": 75, "27": 0, "35": 1, "40": 60, "46": 3, "53": 3, "54": 31, "55": 32, "56": 33, "57": 33, "58": 34, "59": 34, "60": 35, "61": 35, "62": 36, "63": 36}, "uri": "rentals.html", "source_encoding": "ascii"}
+{"uri": "return4.html", "line_map": {"64": 37, "65": 38, "66": 38, "67": 38, "68": 40, "69": 41, "70": 44, "71": 45, "72": 45, "73": 49, "79": 73, "27": 0, "35": 1, "40": 56, "46": 3, "53": 3, "54": 30, "55": 31, "56": 32, "57": 32, "58": 33, "59": 33, "60": 34, "61": 34, "62": 35, "63": 35}, "source_encoding": "ascii", "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/return4.html"}
 __M_END_METADATA
 """

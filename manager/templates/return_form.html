@@ -1,0 +1,40 @@
+<%inherit file="base_ajax.htm" />
+
+<%block name="content">
+
+
+<form class=form-return id="returnform" method="POST" action="/manager/return.return_form/${rental.id}">
+
+        %for error in form.non_field_errors():
+
+            ${ error }
+
+        %endfor
+
+        %for field in form:
+
+            ${ field.label }
+
+            ${ field }
+
+            %if field.errors != '':
+
+            ${ field.errors }
+
+            %endif
+
+        %endfor
+
+        <h4>Late Fee: $${ round(late_fee,2) }</h4>
+
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Return</button>
+
+</form>
+
+
+
+
+
+</%block>
