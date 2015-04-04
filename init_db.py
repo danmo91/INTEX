@@ -79,12 +79,12 @@ for p in permissions:
 #Delete old users
 hmod.User.objects.all().delete()
 
-#Create new users: username, password, first_name, last_name, is_superuser, group, full_name
+#Create new users: username, password, first_name, last_name, is_superuser, group, full_name, email
 for data in [
-  ['danmo91', 'password', 'Dan', 'Morain', True, True, 'Admin', 'Dan Morain'],
-  ['mojok13', 'password', 'Morgs', 'Kap', False, True, 'Manager', 'Morgs Kap'],
-  ['breezy', 'password', 'Bri', 'Sor', False, False, 'Guest', 'Bri Sor'],
-  ['urge', 'password', 'Rj', 'Smith', False, False, 'Guest', 'Rj Smith'],
+  ['danmo91', 'password', 'Dan', 'Morain', True, True, 'Admin', 'Dan Morain', 'dan.morain91@gmail.com'],
+  ['mojok13', 'password', 'Morgs', 'Kap', False, True, 'Manager', 'Morgs Kap', 'dan.morain91@gmail.com'],
+  ['breezy', 'password', 'Bri', 'Sor', False, False, 'Guest', 'Bri Sor', 'dan.morain91@gmail.com'],
+  ['urge', 'password', 'Rj', 'Smith', False, False, 'Guest', 'Rj Smith', 'dan.morain91@gmail.com'],
 ]:
 
     #set attributes
@@ -95,7 +95,9 @@ for data in [
     u.last_name = data[3]
     u.is_superuser = data[4]
     u.is_staff = data[5]
-    u.full_name = data[6]
+    u.full_name = data[7]
+    u.account_balance = 0.00
+    u.email = data[8]
 
     #save
     u.save()

@@ -12,6 +12,7 @@ class User(AbstractUser):
     #date_joined
     #security_question = models.TextField(max_length=100)
     phone = models.TextField(max_length=100)
+    account_balance = models.DecimalField(decimal_places=2, max_digits=7)
     full_name = models.TextField()
 
     def __str__(self):
@@ -81,7 +82,9 @@ class Rental(models.Model):
     return_date = models.DateField(null=True)
     damages = models.TextField(max_length=500, null=True)
     user = models.ForeignKey(User, null=True)
+    item = models.ForeignKey(Item, null=True)
     charge_id = models.TextField(null=True)
+    returned = models.BooleanField(default = False)
 
     def __str__(self):
         return 'Rental: ' + self.description + ', Due Date: ' + str(self.due_date)
@@ -103,4 +106,4 @@ class Address(models.Model):
     user = models.ForeignKey(User, null=True)
 
     def __str__(self):
-        return self.street + ', ' + self.city + ', ' + self.state + ' ' + self.zip_code + ' user: ' + str(self.user)
+        return self.street + ', ' + self.city + ', ' + self.state + ' ' + self.zip_code

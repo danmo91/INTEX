@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Order Receipt</title>
+</head>
+
+<body>
+
+    <h1>Thank You</h1>
+
+    <h2>Order Summary</h2>
+
+        <div class="items">
+			<table>
+				<thead>
+					<tr>
+						<td><strong>Name</strong></td>
+						<td><strong>Description</strong></td>
+						<td><strong>Price</strong></td>
+						<td><strong>Qty</strong></td>
+					</tr>
+				</thead>
+				<tbody>
+					%for key,value in items.items():
+					<tr>
+						<td>${ value[0].name }</td>
+						<td>${ value[0].description }</td>
+						<td>${ value[0].current_price }</td>
+						<td>${ value[1] }</td>
+					</tr>
+					%endfor
+				</tbody>
+			</table>
+        </div>
+
+		%if rentals:
+
+        <h3>Rentals</h3>
+
+		<div class="rentals">
+			<table>
+				<thead>
+					<tr>
+						<td><strong>Name</strong></td>
+						<td><strong>Description</strong></td>
+						<td><strong>Price</strong></td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					%for rental in rentals:
+					<tr>
+						<td>${ rental.name }</td>
+						<td>${ rental.description }</td>
+						<td>${ rental.rental_price   }</td>
+					</tr>
+					%endfor
+				</tbody>
+			</table>
+        </div>
+
+		%endif
+
+		<h3>Total: ${ total }</h3>
+
+</body>
+
+</html>

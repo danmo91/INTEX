@@ -19,6 +19,7 @@
   				<th>Item</th>
   				<th>Rental Date</th>
   				<th>Due Date</th>
+  				<th>Return Date</th>
   				<th>Customer</th>
   				<th>Actions</th>
   			</tr>
@@ -32,6 +33,7 @@
   					<td>${ rental.description }</td>
   					<td>${ rental.rental_date }</td>
   					<td>${ rental.due_date }</td>
+  					<td>${ rental.return_date }</td>
 
             %if rental.user is not None:
             <td>${ rental.user.first_name + ' ' + rental.user.last_name }</td>

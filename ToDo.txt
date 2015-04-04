@@ -2,18 +2,13 @@ To Do:
 
 [x] create To Do List
 [x] hook up sprint 1 models, views, templates (Events, Items, Products, Orders, Rentals) *order will be transaction
-[] shopping app needs to display products instead of items
-[] get rid of unneeded menu items
-[] shopping cart button badge, update with items in cart
-[] move management crud to new admin app (out of homepage app)
+[x] shopping app needs to display products instead of items
+[x] get rid of unneeded menu items
+[x] shopping cart button badge, update with items in cart
+[x] move management crud to new admin app (out of homepage app)
 
 Sprint3:
-[] Add rentals to
-  - [x] shop
-  - [] cart, rental prices
-  - [] checkout
+[x] Add rentals to shop, cart, checkout process
 [] Rental returns, including damages
-[]
 
-
-[] create order, rental object
+[] add account_balance to user 

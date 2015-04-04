@@ -111,6 +111,12 @@ def overdue(request):
     params = {}
 
     today = datetime.date.today()
+    start_date = datetime.date() - datetime.timedelta
+
+    # get rentals over 30
+
+
+    today = datetime.date.today()
     start_date = datetime.date(today.year-20,today.month,today.day)
     end_date = datetime.date(today.year,today.month,today.day-1)
 

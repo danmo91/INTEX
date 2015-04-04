@@ -1,0 +1,53 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Rental Return</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <form method="post">
+          <div class="row">
+              <div class="col-xs-4">
+                ${ form['name'] }
+                ${ form['damage'] }
+              </div>
+              <div class="col-xs-2">
+
+                  ${ form['late_fee'].label }
+                  ${ form['late_fee'] }
+                  ${ form['late_fee_waived'].label }
+                  ${ form['late_fee_waived'] }
+
+
+              </div>
+              <div class="col-xs-2">
+                ${ form['damage_fee'].label }
+                ${ form['damage_fee'] }
+                ${ form['damage_fee_waived'].label }
+                ${ form['damage_fee_waived'] }
+              </div>
+
+          </div><!-- row -->
+
+          <div class="row">
+              <div class="col-xs-4">
+                <button type="submit" class="btn pull-right">Return Item</button>
+              </div>
+          </div> <!-- row -->
+
+        </form> <!-- form -->
+
+    </div> <!-- container -->
+
+</%block>
+
+<%block name="foot_links">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+</%block> <!-- foot_links -->
