@@ -111,19 +111,37 @@ def overdue(request):
     params = {}
 
     today = datetime.date.today()
-    start_date = datetime.date() - datetime.timedelta
+    start_date = (datetime.date.today() - datetime.timedelta(days=60))
 
     # get rentals over 30
+    end_date = (datetime.date.today() - datetime.timedelta(days=30))
+    over_30 = hmod.Rental.objects.filter(due_date__range = (start_date, end_date), returned=False)
+    # print('start_date:', start_date)
+    # print('end_date:', end_date)
+    # print('over_30:', over_30)
 
+    # get rentals over 60
+    start_date = (datetime.date.today() - datetime.timedelta(days=90))
+    end_date = (datetime.date.today() - datetime.timedelta(days=60))
+    over_60 = hmod.Rental.objects.filter(due_date__range = (start_date, end_date), returned=False)
+    # print('over_60:', over_60)
+    # print('start_date:', start_date)
+    # print('end_date:', end_date)
 
-    today = datetime.date.today()
-    start_date = datetime.date(today.year-20,today.month,today.day)
-    end_date = datetime.date(today.year,today.month,today.day-1)
+    # get rentals over 90
+    start_date = (datetime.date.today() - datetime.timedelta(days=365))
+    end_date = (datetime.date.today() - datetime.timedelta(days=90))
+    over_90 = hmod.Rental.objects.filter(due_date__range = (start_date, end_date), returned=False)
+    # print('over_90:', over_90)
+    # print('start_date:', start_date)
+    # print('end_date:', end_date)
 
-
+    end_date = (datetime.date.today() - datetime.timedelta(days=90))
     overdue_items = hmod.Rental.objects.filter(due_date__range = (start_date, end_date))
 
-    params['items'] = overdue_items
+    params['over_30'] = over_30
+    params['over_60'] = over_60
+    params['over_90'] = over_90
 
     return templater.render_to_response(request, 'rentals.overdue.html', params)
 

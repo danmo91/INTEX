@@ -2,23 +2,87 @@
 
 <%block name="content">
 
+  <h2>Over 30</h2>
+
   <table class="table table-striped">
 
     <thead>
       <th>Rental</th>
-      <th>Rental Date</th>
       <th>Due Date</th>
     </thead>
 
     <tbody>
 
-      %for item in items:
+      %for r in over_30:
 
         <tr>
 
-          <td>${ item.description }</td>
-          <td>${ item.rental_date }</td>
-          <td>${ item.due_date }</td>
+          <td>${ r.description }</td>
+          <td>${ r.due_date }</td>
+
+        </tr>
+
+      %endfor
+
+    </tbody>
+
+    <tfoot>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tfoot>
+
+  </table>
+
+  <h2>Over 60</h2>
+
+  <table class="table table-striped">
+
+    <thead>
+      <th>Rental</th>
+      <th>Due Date</th>
+    </thead>
+
+    <tbody>
+
+      %for r in over_60:
+
+        <tr>
+
+          <td>${ r.description }</td>
+          <td>${ r.due_date }</td>
+
+        </tr>
+
+      %endfor
+
+    </tbody>
+
+    <tfoot>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tfoot>
+
+  </table>
+
+  <h2>Over 90</h2>
+
+  <table class="table table-striped">
+
+    <thead>
+      <th>Rental</th>
+      <th>Due Date</th>
+    </thead>
+
+    <tbody>
+
+      %for r in over_90:
+
+        <tr>
+
+          <td>${ r.description }</td>
+          <td>${ r.due_date }</td>
 
         </tr>
 
