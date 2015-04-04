@@ -15,6 +15,12 @@ class User(AbstractUser):
     account_balance = models.DecimalField(decimal_places=2, max_digits=7)
     full_name = models.TextField()
 
+    # for password reset
+    temp_password = models.TextField(null=True)
+    activation_key = models.TextField(null=True)
+    expiration_date = models.DateField(null=True)
+
+
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 

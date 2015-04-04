@@ -13,5 +13,19 @@ $(function() {
   }); // ajaxform
 
 
+  $('#forgot_password').on('click', function(){
+
+
+      $.loadmodal({
+
+        url: '/homepage/index.forgot_password/',
+        title: 'Forgot Password',
+        width: '500px',
+
+      }); // loadmodal
+
+
+  })
+
 
 }); // Ready
