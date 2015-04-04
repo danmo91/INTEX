@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'base',
     'shop',
     'manager',
+    'events',
 )
 
 MIDDLEWARE_CLASSES = (
