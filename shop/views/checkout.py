@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from localflavor.us.us_states import STATE_CHOICES
 import requests
 import datetime
+from django.core.mail import send_mail, EmailMessage
 
 
 
@@ -120,11 +121,10 @@ def get_total(request):
 
     # get list of items in shopping_cart
     if 'shopping_cart' in request.session:
-        product_ids = request.session['shopping_cart']
 
-        for product_id in product_ids:
-            product = hmod.Product.objects.get(id=product_id)
-            total += product.current_price
+        for ID,qty in request.session['shopping_cart'].items():
+            product = hmod.Product.objects.get(id=ID)
+            total += product.current_price * qty
 
     # don't forget rental_cart
     if 'rental_cart' in request.session:
@@ -133,6 +133,8 @@ def get_total(request):
         for rental_id in rental_ids:
             rental = hmod.Item.objects.get(id=rental_id)
             total += rental.rental_price
+
+    print('total:', total)
 
     return total
 
@@ -211,6 +213,7 @@ def charge_card(request):
                 rental.charge_id = resp['ID']
                 user = hmod.User.objects.get(id=request.user.id)
                 rental.user = user
+                rental.item = r
                 rental.save()
 
         # redirect to receipt
@@ -224,6 +227,8 @@ def charge_card(request):
 def receipt(request):
 
     params = {}
+
+    params['total'] = get_total(request)
 
     # get items in shopping_cart
     items = {}
@@ -268,11 +273,25 @@ def receipt(request):
 
     # get user's address
     user = hmod.User.objects.get(id=request.user.id)
-    print('user:', user)
     address = hmod.Address.objects.get(user=user)
-    print('address:', address)
 
     params['address'] = address
+    params['user'] = user.full_name
+    params['date'] = datetime.date.today()
+
+    #Send Email
+    if request.user.email != "":
+        subject = "CHF Receipt"
+        to = [request.user.email]
+        from_email = 'dan.morain91@gmail.com'
+
+
+
+        message = templater.render(request, 'email_receipt3.html', params)
+
+        msg = EmailMessage(subject, message, to=to, from_email=from_email)
+        msg.content_subtype = 'html'
+        msg.send()
 
     return templater.render_to_response(request, 'receipt.html', params)
 
