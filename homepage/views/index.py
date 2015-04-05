@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 import homepage.models as hmod
 import hashlib, datetime, random, string
 from django.core.mail import send_mail, EmailMessage
+# ldap plugins
+from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 
 
 templater = get_renderer('homepage')
@@ -29,6 +31,29 @@ def loginform(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
+
+            # check ldap
+
+            # create server, make connection change server to cheritagefoundation.com later
+            # s = Server('128.187.61.56', port=12345, get_info=GET_ALL_INFO)
+            #
+            # c = Connection(
+            #       s,
+            #       auto_bind = True,
+            #       user = form.cleaned_data['username'] + '@cheritagefoundation.local',
+            #       password= form.cleaned_data['password'],
+            #       authentication=AUTH_SIMPLE,
+            #       client_strategy=STRATEGY_SYNC
+            #     )
+            #
+            # # if ldap, then login to ldap
+            # if c:
+            #     u = hmod.User.objects.get_or_create(username=form.cleaned_data['username'])
+            #     u.set_password(form.cleaned_data['password'])
+            #     u.save()
+
+            # login to chf
+
             #Authenicate and Login
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data["password"])
             print(user)
