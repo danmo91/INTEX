@@ -11,8 +11,9 @@ class User(AbstractUser):
     #is_active
     #date_joined
     #security_question = models.TextField(max_length=100)
+
     phone = models.TextField(max_length=100)
-    account_balance = models.DecimalField(decimal_places=2, max_digits=7)
+    account_balance = models.DecimalField(decimal_places=2, max_digits=7, default=0)
     full_name = models.TextField()
 
     # for password reset
