@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428117754.894154
+_modified_time = 1428348400.437219
 _enable_loop = True
-_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/base.htm'
+_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/INTEX/manager/templates/base.htm'
 _template_uri = 'base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['admin', 'foot_links', 'center', 'header', 'head_links', 'footer']
+_exports = ['center', 'admin', 'head_links', 'header', 'meta', 'footer', 'foot_links']
 
 
 def _mako_get_namespace(context, name):
@@ -28,19 +28,21 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def admin():
-            return render_admin(context._locals(__M_locals))
-        def foot_links():
-            return render_foot_links(context._locals(__M_locals))
         def center():
             return render_center(context._locals(__M_locals))
-        def header():
-            return render_header(context._locals(__M_locals))
+        def admin():
+            return render_admin(context._locals(__M_locals))
         def head_links():
             return render_head_links(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
         def footer():
             return render_footer(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
+        def foot_links():
+            return render_foot_links(context._locals(__M_locals))
+        def header():
+            return render_header(context._locals(__M_locals))
+        def meta():
+            return render_meta(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n\n<!-- CSS/JS Links that belong only to the homepage app -->\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'head_links'):
@@ -48,6 +50,11 @@ def render_body(context,**pageargs):
         
 
         __M_writer(' <!-- head_links -->\n\n')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'meta'):
+            context['self'].meta(**pageargs)
+        
+
+        __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'admin'):
             context['self'].admin(**pageargs)
         
@@ -63,18 +70,30 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_center(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def center():
+            return render_center(context)
+        __M_writer = context.writer()
+        __M_writer('\n\n  ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_admin(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def admin():
-            return render_admin(context)
         def center():
             return render_center(context)
+        def admin():
+            return render_admin(context)
+        request = context.get('request', UNDEFINED)
         def header():
             return render_header(context)
         def footer():
             return render_footer(context)
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n\n  ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'header'):
@@ -97,25 +116,13 @@ def render_admin(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_foot_links(context,**pageargs):
+def render_head_links(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def foot_links():
-            return render_foot_links(context)
+        def head_links():
+            return render_head_links(context)
         __M_writer = context.writer()
-        __M_writer('\n\n<!-- DataTables -->\n<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>\n\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_center(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def center():
-            return render_center(context)
-        __M_writer = context.writer()
-        __M_writer('\n\n  ')
+        __M_writer('\n\n<!-- DataTables CSS -->\n<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.css">\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -124,9 +131,9 @@ def render_center(context,**pageargs):
 def render_header(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        request = context.get('request', UNDEFINED)
         def header():
             return render_header(context)
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    <!-- Navbar -->\n    <nav class="navbar navbar-default navbar-fixed-top">\n          <div class="container-fluid">\n            <!-- Brand and toggle get grouped for better mobile display -->\n            <div class="navbar-header">\n              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n                <span class="sr-only">Toggle navigation</span>\n                <span class="icon-bar"></span>\n                <span class="icon-bar"></span>\n                <span class="icon-bar"></span>\n              </button>\n              <a class="navbar-brand" href="/homepage/index/">Colonial Heritage Foundation</a>\n            </div>\n\n            <!-- Collect the nav links, forms, and other content for toggling -->\n            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n              <ul class="nav navbar-nav">\n                <li id="tab"><a href="#">About</a></li>\n                <li id="tab"><a href="#">Contact</a></li>\n                <li id="tab"><a href="/shop/index/">Shop</a></li>\n\n')
         if request.user.is_staff:
@@ -144,13 +151,13 @@ def render_header(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_head_links(context,**pageargs):
+def render_meta(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def head_links():
-            return render_head_links(context)
+        def meta():
+            return render_meta(context)
         __M_writer = context.writer()
-        __M_writer('\n\n<!-- DataTables CSS -->\n<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.css">\n\n')
+        __M_writer('\n<meta charset="UTF-8">\n<meta name="description" content="Managers maintain CHF data">\n<meta name="keywords" content="CHF">\n<meta name="author" content="Dan Morain">\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -168,8 +175,20 @@ def render_footer(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_foot_links(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def foot_links():
+            return render_foot_links(context)
+        __M_writer = context.writer()
+        __M_writer('\n\n<!-- DataTables -->\n<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"line_map": {"66": 11, "131": 14, "132": 36, "133": 37, "134": 52, "135": 64, "136": 65, "137": 67, "138": 67, "139": 69, "140": 70, "141": 74, "79": 11, "147": 4, "84": 83, "153": 4, "89": 88, "27": 0, "94": 99, "159": 92, "100": 106, "165": 92, "60": 111, "106": 106, "171": 165, "45": 1, "112": 86, "50": 9, "118": 86, "55": 104, "124": 14}, "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/manager/templates/base.htm", "source_encoding": "ascii", "uri": "base.htm"}
+{"uri": "base.htm", "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/INTEX/manager/templates/base.htm", "source_encoding": "ascii", "line_map": {"172": 100, "67": 119, "73": 94, "138": 22, "139": 44, "140": 45, "141": 60, "142": 72, "79": 94, "144": 75, "145": 75, "146": 77, "131": 22, "148": 82, "85": 19, "154": 11, "27": 0, "160": 11, "98": 19, "166": 100, "103": 91, "108": 96, "178": 114, "47": 1, "113": 107, "143": 73, "147": 78, "52": 9, "190": 184, "119": 4, "184": 114, "57": 17, "125": 4, "62": 112}}
 __M_END_METADATA
 """

@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428172084.738612
+_modified_time = 1428348400.447793
 _enable_loop = True
-_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/base/templates/base.htm'
+_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/INTEX/base/templates/base.htm'
 _template_uri = '/base/templates/base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['head_links', 'foot_links', 'shop', 'homepage', 'admin', 'events']
+_exports = ['admin', 'shop', 'head_links', 'meta', 'homepage', 'events', 'foot_links']
 
 
 from django_mako_plus.controller import static_files 
@@ -19,21 +19,23 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def admin():
+            return render_admin(context._locals(__M_locals))
         def head_links():
             return render_head_links(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
         def shop():
             return render_shop(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def homepage():
-            return render_homepage(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
-        def admin():
-            return render_admin(context._locals(__M_locals))
-        def events():
-            return render_events(context._locals(__M_locals))
         def foot_links():
             return render_foot_links(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def meta():
+            return render_meta(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
+        def homepage():
+            return render_homepage(context._locals(__M_locals))
+        def events():
+            return render_events(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -41,7 +43,12 @@ def render_body(context,**pageargs):
         
         __M_locals_builtin_stored = __M_locals_builtin()
         __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['static_renderer'] if __M_key in __M_locals_builtin_stored]))
-        __M_writer('\n\n<!DOCTYPE html>\n<html>\n  <meta charset="UTF-8">\n  <head>\n\n    <title>Colonial Heritage Foundation</title>\n\n')
+        __M_writer('\n\n<!DOCTYPE html>\n<html>\n\n  ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'meta'):
+            context['self'].meta(**pageargs)
+        
+
+        __M_writer('\n\n  <head>\n\n    <title>Colonial Heritage Foundation</title>\n\n')
         __M_writer('    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>\n\n    <!-- ajax jquery form plugin -->\n\n    <script src="')
         __M_writer(str( STATIC_URL))
         __M_writer('base/media/jquery.form.js"></script>\n    <script src="')
@@ -50,7 +57,7 @@ def render_body(context,**pageargs):
         __M_writer(str( STATIC_URL))
         __M_writer('base/media/bootstrap-notify.js"></script>\n    <link rel="stylesheet" href="')
         __M_writer(str( STATIC_URL))
-        __M_writer('base/media/animate.css">\n\n\n    <!-- login page plugins -->\n    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">\n\n\n\n    <!-- Latest compiled and minified CSS -->\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">\n\n    <!-- Optional theme -->\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">\n\n    <!-- Latest compiled and minified JavaScript -->\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>\n\n    ')
+        __M_writer('base/media/animate.css">\n    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">\n\n\n    <!-- login page plugins -->\n    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">\n\n    <!-- Latest compiled and minified CSS -->\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">\n\n    <!-- Optional theme -->\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">\n\n    <!-- Latest compiled and minified JavaScript -->\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>\n\n    ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'head_links'):
             context['self'].head_links(**pageargs)
         
@@ -92,23 +99,11 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_head_links(context,**pageargs):
+def render_admin(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def head_links():
-            return render_head_links(context)
-        __M_writer = context.writer()
-        __M_writer('\n      <!-- App specific head links can be organized into here -->\n    ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_foot_links(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def foot_links():
-            return render_foot_links(context)
+        def admin():
+            return render_admin(context)
         __M_writer = context.writer()
         __M_writer('\n\n    ')
         return ''
@@ -128,23 +123,35 @@ def render_shop(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_homepage(context,**pageargs):
+def render_head_links(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def homepage():
-            return render_homepage(context)
+        def head_links():
+            return render_head_links(context)
         __M_writer = context.writer()
-        __M_writer('\n\n    ')
+        __M_writer('\n      <!-- App specific head links can be organized into here -->\n    ')
         return ''
     finally:
         context.caller_stack._pop_frame()
 
 
-def render_admin(context,**pageargs):
+def render_meta(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def admin():
-            return render_admin(context)
+        def meta():
+            return render_meta(context)
+        __M_writer = context.writer()
+        __M_writer('\n\n\n  ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_homepage(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def homepage():
+            return render_homepage(context)
         __M_writer = context.writer()
         __M_writer('\n\n    ')
         return ''
@@ -164,8 +171,20 @@ def render_events(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_foot_links(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def foot_links():
+            return render_foot_links(context)
+        __M_writer = context.writer()
+        __M_writer('\n\n    ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"uri": "/base/templates/base.htm", "line_map": {"66": 53, "131": 51, "71": 57, "167": 161, "137": 51, "76": 61, "143": 59, "16": 4, "81": 65, "18": 0, "149": 59, "86": 69, "87": 72, "88": 72, "89": 72, "155": 63, "125": 55, "95": 41, "161": 63, "113": 67, "101": 41, "38": 2, "39": 4, "40": 5, "107": 67, "44": 5, "45": 15, "46": 19, "47": 19, "48": 20, "49": 20, "50": 23, "51": 23, "52": 24, "53": 24, "119": 55, "58": 43, "59": 46, "60": 46, "61": 46}, "source_encoding": "ascii", "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/base/templates/base.htm"}
+{"uri": "/base/templates/base.htm", "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/INTEX/base/templates/base.htm", "source_encoding": "ascii", "line_map": {"65": 47, "66": 50, "67": 50, "68": 50, "73": 57, "138": 10, "78": 61, "16": 4, "120": 59, "18": 0, "83": 65, "174": 71, "150": 55, "186": 180, "88": 69, "132": 45, "156": 55, "93": 73, "94": 76, "95": 76, "96": 76, "144": 10, "162": 67, "180": 71, "102": 63, "40": 2, "41": 4, "42": 5, "108": 63, "46": 5, "168": 67, "114": 59, "51": 13, "52": 20, "53": 24, "54": 24, "55": 25, "56": 25, "57": 28, "58": 28, "59": 29, "60": 29, "126": 45}}
 __M_END_METADATA
 """

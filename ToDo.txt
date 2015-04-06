@@ -11,4 +11,32 @@ Sprint3:
 [x] Add rentals to shop, cart, checkout process
 [] Rental returns, including damages
 
-[] add account_balance to user 
+[] add account_balance to user
+
+INTEX
+
+Design:
+[] Site Design- Homepage (relevant content, logo, about?, contact?)
+[] init_db.py dummy data
+[] LDAP
+[] fix login
+[] show first name in top right nav
+[] ask rod and scott for checkout template
+[] product list css (even out buttons )
+[] fonts
+[] images (white background)
+[] events -> areas -> items for sale (DB foreign keys)
+[] overdue rentals (30,60,90) tabs
+[] fix menu bar
+[] rental return layout (boostrap switch)
+[] email template for rental overdue
+
+
+[] Document .py files, view_functions, overview logic
+[] init_db.py
+[] Error handling (don't touch the DB outside of a try catch)
+[] Manager App- show foreign key, helpful information in tables
+- [] date-picker
+- [] date format
+[] Permission decorators
+[] user permissions

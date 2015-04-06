@@ -287,7 +287,7 @@ def receipt(request):
 
 
 
-        message = templater.render(request, 'email_receipt3.html', params)
+        message = templater.render(request, 'email_receipt.html', params)
 
         msg = EmailMessage(subject, message, to=to, from_email=from_email)
         msg.content_subtype = 'html'

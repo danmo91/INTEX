@@ -10,12 +10,24 @@ import homepage.models as hmod
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 
 
+# # create server, make connection change server to cheritagefoundation.com later
+# s = Server('128.187.61.56', port=12345, get_info=GET_ALL_INFO)
+#
+# c = Connection(
+#       s,
+#       auto_bind = True,
+#       user = 'dan@cheritagefoundation.local',
+#       password= 'Password1',
+#       authentication=AUTH_SIMPLE,
+#       client_strategy=ASYNC
+#     )
+
 # create server, make connection change server to cheritagefoundation.com later
-s = Server('128.187.61.56', port=12345, get_info=GET_ALL_INFO)
+s = Server('128.187.61.56', port=8889, get_info=GET_ALL_INFO)
 
 c = Connection(
       s,
-      auto_bind = True,
+      auto_bind=True,
       user = 'dan@cheritagefoundation.local',
       password= 'Password1',
       authentication=AUTH_SIMPLE,
