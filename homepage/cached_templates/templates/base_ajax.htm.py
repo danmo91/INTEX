@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1427250472.900344
+_modified_time = 1428360156.431261
 _enable_loop = True
-_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/homepage/templates/base_ajax.htm'
+_template_filename = 'C:\\Users\\brian_000\\projects\\intex\\homepage\\templates/base_ajax.htm'
 _template_uri = 'base_ajax.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -20,26 +20,26 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         request = context.get('request', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n')
-        __M_writer('\n')
+        __M_writer('\r\n')
+        __M_writer('\r\n')
         static_renderer = static_files.StaticRenderer(self) 
         
         __M_locals_builtin_stored = __M_locals_builtin()
         __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['static_renderer'] if __M_key in __M_locals_builtin_stored]))
-        __M_writer('\n\n')
+        __M_writer('\r\n\r\n')
         __M_writer(str( static_renderer.get_template_css(request, context)  ))
-        __M_writer('\n\n')
+        __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        __M_writer('  \n\n')
+        __M_writer('  \r\n\r\n')
         __M_writer(str( static_renderer.get_template_js(request, context)  ))
-        __M_writer('\n')
+        __M_writer('\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -51,7 +51,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\n  Sub-templates should place their ajax content here.\n')
+        __M_writer('\r\n  Sub-templates should place their ajax content here.\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -59,6 +59,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "ascii", "uri": "base_ajax.htm", "line_map": {"33": 7, "34": 10, "35": 10, "48": 13, "40": 15, "41": 18, "42": 18, "60": 54, "16": 6, "18": 0, "54": 13, "27": 4, "28": 6, "29": 7}, "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/homepage/templates/base_ajax.htm"}
+{"uri": "base_ajax.htm", "line_map": {"33": 7, "34": 10, "35": 10, "48": 13, "40": 15, "41": 18, "42": 18, "60": 54, "16": 6, "18": 0, "54": 13, "27": 4, "28": 6, "29": 7}, "source_encoding": "ascii", "filename": "C:\\Users\\brian_000\\projects\\intex\\homepage\\templates/base_ajax.htm"}
 __M_END_METADATA
 """
