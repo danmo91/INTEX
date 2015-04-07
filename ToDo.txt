@@ -25,7 +25,7 @@ Design:
 [BRI] product list css (even out buttons )
 [x] fonts
 [BRI] images (white background)
-[DAN] events -> areas -> items for sale (DB foreign keys)
+[x] events -> areas -> items for sale (DB foreign keys)
 [DAN] overdue rentals (30,60,90) tabs
 [BRI] fix menu bar (accessing menus from everywhere)
 [DAN] rental return layout (boostrap switch)
