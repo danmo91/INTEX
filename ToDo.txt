@@ -19,16 +19,17 @@ Design:
 [] Site Design- Homepage (relevant content, logo, about?, contact?)
 [] init_db.py dummy data
 [x] LDAP
-[] show first name in top right nav
+[x] show first name in top right nav
 [] ask rod and scott for checkout template
 [] product list css (even out buttons )
 [] fonts
 [] images (white background)
-[] events -> areas -> items for sale (DB foreign keys)
+[x] events -> areas -> items for sale (DB foreign keys)
 [] overdue rentals (30,60,90) tabs
 [] fix menu bar
 [] rental return layout (boostrap switch)
 [] email template for rental overdue
+[x] email template receipt
 
 
 [] Document .py files, view_functions, overview logic

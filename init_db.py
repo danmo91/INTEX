@@ -225,6 +225,30 @@ for data in [
 
     p.save()
 
+####################################### Area_item #######################################
+
+#Delete old Area_Items
+hmod.Area_Item.objects.all().delete()
+
+#Create new Area_Items: name, description, price, area
+
+# Bakery
+for data in [
+    ['Twisted Bread Loaf', 'Hearty and rustic, baked from the fire', '3.99','4'],
+    ['Strawberry Jam', 'Just like grandma made', '2.99','4'],
+    ['Flat Bread Loaf', 'Tasty loaf often used for religious purposes', '1.99','4'],
+    ['Butter Knife', 'Spread goodness everywhere', '5.99','4'],
+
+]:
+
+    a = hmod.Area_Item()
+    a.name = data[0]
+    a.description = data[1]
+    a.price = data[2]
+    a.area = hmod.Area.objects.get(id = data[3])
+
+    a.save()
+
 ####################################### Rentals #######################################
 
 #Delete old Rentals

@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428173808.334596
+_modified_time = 1428424273.080274
 _enable_loop = True
-_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/events/templates/event_detail.html'
+_template_filename = '/Users/Dan/Projects/IS 413/cheritagefoundation/INTEX/events/templates/event_detail.html'
 _template_uri = 'event_detail.html'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -28,12 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        event = context.get('event', UNDEFINED)
-        products = context.get('products', UNDEFINED)
-        areas = context.get('areas', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def center():
             return render_center(context._locals(__M_locals))
+        areas = context.get('areas', UNDEFINED)
+        event = context.get('event', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'center'):
@@ -49,12 +48,11 @@ def render_body(context,**pageargs):
 def render_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        event = context.get('event', UNDEFINED)
-        products = context.get('products', UNDEFINED)
-        areas = context.get('areas', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def center():
             return render_center(context)
+        areas = context.get('areas', UNDEFINED)
+        event = context.get('event', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    <div class="container">\n\n            <!-- Jumbotron Header -->\n            <header class="jumbotron hero-spacer">\n                <h1>')
         __M_writer(str( event.name ))
@@ -70,18 +68,9 @@ def render_center(context,**pageargs):
             __M_writer(str( area.name ))
             __M_writer('</h3>\n                            <p>')
             __M_writer(str( area.description ))
-            __M_writer('</p>\n                        </div>\n                    </div>\n                </div>\n\n')
-        __M_writer('\n\n            </div>\n            <!-- /.row -->\n\n            <!-- Title -->\n            <div class="row">\n                <div class="col-lg-12">\n                    <h3>Products For Sale</h3>\n                </div>\n            </div>\n            <!-- /.row -->\n\n            <!-- Page Features -->\n            <div class="row text-center items">\n\n')
-        for product in products:
-            __M_writer('\n                <div class="col-md-3 col-sm-6 hero-feature">\n                    <div class="thumbnail">\n                        <img class="item_image" src="')
-            __M_writer(str( STATIC_URL ))
-            __M_writer('shop/media/product_images/')
-            __M_writer(str( product.id))
-            __M_writer('.jpg" alt="">\n                        <div class="caption">\n                            <h3>')
-            __M_writer(str( product.name ))
-            __M_writer('</h3>\n                            <p>')
-            __M_writer(str( product.description ))
-            __M_writer('</p>\n                        </div>\n                    </div>\n                </div>\n\n')
+            __M_writer('</p>\n                            <p>\n                                <a href="/events/area_detail/')
+            __M_writer(str( area.id ))
+            __M_writer('" class="btn btn-default">More Info</a>\n                            </p>\n                        </div>\n                    </div>\n                </div>\n\n')
         __M_writer('\n\n            </div>\n            <!-- /.row -->\n\n            <hr>\n\n            <!-- Footer -->\n            <footer>\n                <div class="row">\n                    <div class="col-lg-12">\n                        <p>Copyright Your Website 2014</p>\n                    </div>\n                </div>\n            </footer>\n\n        </div>\n\n')
         return ''
     finally:
@@ -90,6 +79,6 @@ def render_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "event_detail.html", "line_map": {"64": 27, "65": 28, "66": 31, "67": 31, "68": 31, "69": 31, "70": 33, "71": 33, "72": 34, "73": 34, "74": 40, "75": 56, "76": 57, "77": 60, "78": 60, "79": 60, "80": 60, "81": 62, "82": 62, "83": 63, "84": 63, "85": 69, "27": 0, "91": 85, "38": 1, "43": 87, "49": 3, "59": 3, "60": 8, "61": 8, "62": 9, "63": 9}, "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/sprint3/events/templates/event_detail.html", "source_encoding": "ascii"}
+{"line_map": {"64": 31, "65": 31, "66": 31, "67": 31, "68": 33, "69": 33, "70": 34, "71": 34, "72": 36, "73": 36, "74": 43, "80": 74, "27": 0, "37": 1, "42": 61, "48": 3, "57": 3, "58": 8, "59": 8, "60": 9, "61": 9, "62": 27, "63": 28}, "filename": "/Users/Dan/Projects/IS 413/cheritagefoundation/INTEX/events/templates/event_detail.html", "uri": "event_detail.html", "source_encoding": "ascii"}
 __M_END_METADATA
 """

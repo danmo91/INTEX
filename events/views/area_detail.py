@@ -14,13 +14,14 @@ def process_request(request):
 
     params = {}
 
-    # get event
-    event = hmod.Event.objects.get(id = request.urlparams[0])
+    # get area
+    area = hmod.Area.objects.get(id = request.urlparams[0])
 
-    # get list of areas
-    areas = hmod.Area.objects.all()
+    # get list of products for sale
+    products = hmod.Area_Item.objects.filter(area=area)
+    print('products:', products)
 
-    params['event'] = event
-    params['areas'] = areas
+    params['area'] = area
+    params['products'] = products
 
-    return templater.render_to_response(request, 'event_detail.html', params)
+    return templater.render_to_response(request, 'area_detail.html', params)

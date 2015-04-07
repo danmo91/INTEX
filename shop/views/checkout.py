@@ -247,11 +247,12 @@ def receipt(request):
 
             items[item.id] = item_container
 
-            # clear out shopping cart
-            del request.session['shopping_cart']
+        # clear out shopping cart
+        del request.session['shopping_cart']
 
     # pass to template
     params['items'] = items
+    print('items:', items)
 
     # get items in rental_cart
     rentals = []
@@ -270,6 +271,7 @@ def receipt(request):
 
     # pass to template
     params['rentals'] = rentals
+    print('rentals:', rentals)
 
     # get user's address
     user = hmod.User.objects.get(id=request.user.id)
@@ -287,13 +289,13 @@ def receipt(request):
 
 
 
-        message = templater.render(request, 'email_receipt.html', params)
+        message = templater.render(request, 'receipt_email.html', params)
 
         msg = EmailMessage(subject, message, to=to, from_email=from_email)
         msg.content_subtype = 'html'
-        msg.send()
+        #msg.send()
 
-    return templater.render_to_response(request, 'receipt.html', params)
+    return templater.render_to_response(request, 'receipt_email.html', params)
 
 
 class CheckoutForm(forms.Form):
