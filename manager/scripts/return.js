@@ -4,9 +4,12 @@ $(function() {
 
       console.log('clicked');
 
+      var batch = $(this).attr('data-id')
+
+      console.log('batch: ', batch)
 
       // send email via ajax
-      $.ajax({url: "/manager/return.send_email/", success: function(result){
+      $.ajax({url: "/manager/return.send_email/" + batch, success: function(result){
 
           console.log('ajax happened')
 

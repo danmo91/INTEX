@@ -2,100 +2,127 @@
 
 <%block name="content">
 
-  <h2>Over 30</h2>
+  <div role="tabpanel">
 
-  <table class="table table-striped">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation"><a href="#over30" aria-controls="over30" role="tab" data-toggle="tab">Over 30</a></li>
+          <li role="presentation"><a href="#over60" aria-controls="over60" role="tab" data-toggle="tab">Over 60</a></li>
+          <li role="presentation"><a href="#over90" aria-controls="over90" role="tab" data-toggle="tab">Over 90</a></li>
+      </ul>
 
-    <thead>
-      <th>Rental</th>
-      <th>Due Date</th>
-    </thead>
+      <!-- tab-panes -->
+      <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="over30">
 
-    <tbody>
+              <table class="table table-striped">
 
-      %for r in over_30:
+                <thead>
+                  <th>Rental</th>
+                  <th>Customer</th>
+                  <th>Due Date</th>
+                </thead>
 
-        <tr>
+                <tbody>
 
-          <td>${ r.description }</td>
-          <td>${ r.due_date }</td>
+                  %for r in over_30:
 
-        </tr>
+                    <tr>
 
-      %endfor
+                      <td>${ r.description }</td>
+                      <td>${ r.user }</td>
+                      <td>${ r.due_date }</td>
 
-    </tbody>
+                    </tr>
 
-    <tfoot>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tfoot>
+                  %endfor
 
-  </table>
+                </tbody>
 
-  <h2>Over 60</h2>
+                <tfoot>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tfoot>
 
-  <table class="table table-striped">
+              </table>
 
-    <thead>
-      <th>Rental</th>
-      <th>Due Date</th>
-    </thead>
+              <a class='btn btn-primary email_button' data-id="thirty" >Send Email</a>
 
-    <tbody>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="over60">
+              <table class="table table-striped">
+                <thead>
+                  <th>Rental</th>
+                  <th>Customer</th>
+                  <th>Due Date</th>
+                </thead>
+                <tbody>
+                  %for r in over_60:
 
-      %for r in over_60:
+                    <tr>
 
-        <tr>
+                      <td>${ r.description }</td>
+                      <td>${ r.user }</td>
+                      <td>${ r.due_date }</td>
 
-          <td>${ r.description }</td>
-          <td>${ r.due_date }</td>
+                    </tr>
 
-        </tr>
+                  %endfor
+                </tbody>
+                <tfoot>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tfoot>
+              </table>
 
-      %endfor
+              <a class='btn btn-primary email_button' data-id="sixty" >Send Email</a>
 
-    </tbody>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="over90">
 
-    <tfoot>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tfoot>
+              <table class="table table-striped">
 
-  </table>
+                <thead>
+                  <th>Rental</th>
+                  <th>Customer</th>
+                  <th>Due Date</th>
+                </thead>
 
-  <h2>Over 90</h2>
+                <tbody>
 
-  <table class="table table-striped">
+                  %for r in over_90:
 
-    <thead>
-      <th>Rental</th>
-      <th>Due Date</th>
-    </thead>
+                    <tr>
 
-    <tbody>
+                      <td>${ r.description }</td>
+                      <td>${ r.user }</td>
+                      <td>${ r.due_date }</td>
 
-      %for r in over_90:
+                    </tr>
 
-        <tr>
+                  %endfor
 
-          <td>${ r.description }</td>
-          <td>${ r.due_date }</td>
+                </tbody>
 
-        </tr>
+                <tfoot>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tfoot>
 
-      %endfor
+              </table>
 
-    </tbody>
+              <a class='btn btn-primary email_button' data-id="ninety">Send Email</a>
 
-    <tfoot>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tfoot>
+          </div>
+      </div>
 
-  </table>
+
+
+
+
+  </div>
 
 </%block>
