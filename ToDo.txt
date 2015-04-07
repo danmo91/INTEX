@@ -16,23 +16,23 @@ Sprint3:
 INTEX
 
 Design:
-[] Site Design- Homepage (relevant content, logo, about?, contact?)
-[] init_db.py dummy data
-[] LDAP
-[] show first name in top right nav
-[] ask rod and scott for checkout template
-[] product list css (even out buttons )
-[] fonts
-[] images (white background)
-[] events -> areas -> items for sale (DB foreign keys)
-[] overdue rentals (30,60,90) tabs
-[] fix menu bar
-[] rental return layout (boostrap switch)
-[] email template for rental overdue
+[SCRUM] Site Design- Homepage (relevant content, logo, about?, contact?)
+[BRI] init_db.py dummy data
+[x] LDAP
+[x] show first name in top right nav
+[DAN] ask rod and scott for checkout template
+[BRI] product list css (even out buttons )
+[x] fonts
+[BRI] images (white background)
+[DAN] events -> areas -> items for sale (DB foreign keys)
+[DAN] overdue rentals (30,60,90) tabs
+[BRI] fix menu bar (accessing menus from everywhere)
+[DAN] rental return layout (boostrap switch)
+[DAN] email template for rental overdue
 
 
 [] Document .py files, view_functions, overview logic
-[] init_db.py
+[BRI] init_db.py
 [] Error handling (don't touch the DB outside of a try catch)
 [] Manager App- show foreign key, helpful information in tables
 - [] date-picker
