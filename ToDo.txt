@@ -18,7 +18,7 @@ INTEX
 Design:
 [] Site Design- Homepage (relevant content, logo, about?, contact?)
 [] init_db.py dummy data
-[] LDAP
+[x] LDAP
 [] show first name in top right nav
 [] ask rod and scott for checkout template
 [] product list css (even out buttons )
