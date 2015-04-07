@@ -252,7 +252,6 @@ def receipt(request):
 
     # pass to template
     params['items'] = items
-    print('items:', items)
 
     # get items in rental_cart
     rentals = []
@@ -271,7 +270,6 @@ def receipt(request):
 
     # pass to template
     params['rentals'] = rentals
-    print('rentals:', rentals)
 
     # get user's address
     user = hmod.User.objects.get(id=request.user.id)
@@ -293,9 +291,9 @@ def receipt(request):
 
         msg = EmailMessage(subject, message, to=to, from_email=from_email)
         msg.content_subtype = 'html'
-        #msg.send()
+        msg.send()
 
-    return templater.render_to_response(request, 'receipt_email.html', params)
+    return templater.render_to_response(request, 'receipt.html', params)
 
 
 class CheckoutForm(forms.Form):
