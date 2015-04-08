@@ -30,7 +30,7 @@ Design:
 [x] email template for rental overdue
 
 
-[] Document .py files, view_functions, overview logic
+[x] Document .py files, view_functions, overview logic
 [x] init_db.py
 [] Error handling (don't touch the DB outside of a try catch)
 [] Manager App- show foreign key, helpful information in tables
