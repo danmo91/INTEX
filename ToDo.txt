@@ -25,7 +25,7 @@ Design:
 [x] images (white background)
 [x] events -> areas -> items for sale (DB foreign keys)
 [x] overdue rentals (30,60,90) tabs
-[BRI] fix menu bar (accessing menus from everywhere)
+[x] fix menu bar (accessing menus from everywhere)
 [x] rental return layout (boostrap switch)
 [x] email template for rental overdue
 
