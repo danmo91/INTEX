@@ -9,9 +9,8 @@ To Do:
 
 Sprint3:
 [x] Add rentals to shop, cart, checkout process
-[] Rental returns, including damages
-
-[] add account_balance to user
+[x] Rental returns, including damages
+[x] add account_balance to user
 
 INTEX
 
@@ -21,14 +20,14 @@ Design:
 [x] LDAP
 [x] show first name in top right nav
 [DAN] ask rod and scott for checkout template
-[BRI] product list css (even out buttons )
+[x] product list css (even out buttons )
 [x] fonts
 [x] images (white background)
-[DAN] events -> areas -> items for sale (DB foreign keys)
-[DAN] overdue rentals (30,60,90) tabs
-[BRI] fix menu bar (accessing menus from everywhere)
-[DAN] rental return layout (boostrap switch)
-[DAN] email template for rental overdue
+[x] events -> areas -> items for sale (DB foreign keys)
+[x] overdue rentals (30,60,90) tabs
+[x] fix menu bar (accessing menus from everywhere)
+[x] rental return layout (boostrap switch)
+[x] email template for rental overdue
 
 
 [] Document .py files, view_functions, overview logic

@@ -13,7 +13,7 @@ class User(AbstractUser):
     #security_question = models.TextField(max_length=100)
 
     phone = models.TextField(max_length=100)
-    account_balance = models.DecimalField(decimal_places=2, max_digits=7, default=0)
+    account_balance = models.IntegerField(default=0)
     full_name = models.TextField()
 
     # for password reset
@@ -77,6 +77,7 @@ class Item(models.Model):
     value = models.DecimalField(max_digits=7,decimal_places=2, null=True)
     rental_price = models.DecimalField(max_digits=7,decimal_places=2, null=True)
     available = models.BooleanField(default = True)
+    condition = models.TextField(null=True)
 
     def __str__(self):
         return self.name + ': ' + str(self.value)
@@ -96,7 +97,6 @@ class Rental(models.Model):
     rental_date = models.DateField(null=True)
     due_date = models.DateField(null=True)
     return_date = models.DateField(null=True)
-    damages = models.TextField(max_length=500, null=True)
     user = models.ForeignKey(User, null=True)
     item = models.ForeignKey(Item, null=True)
     charge_id = models.TextField(null=True)

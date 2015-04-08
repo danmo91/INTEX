@@ -9,6 +9,18 @@
 
 </%block>
 
+<%block name="head_links">
+  <!-- App specific head links can be organized into here -->
+
+
+    <link href="${STATIC_URL}manager/media/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css">
+
+
+
+
+</%block>
+
 <%block name="admin">
 
 
@@ -30,9 +42,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li id="tab"><a href="#">About</a></li>
-                <li id="tab"><a href="#">Contact</a></li>
-                <li id="tab"><a href="/shop/index/">Shop</a></li>
+                <li><a href="/shop/index/">Store</a></li>
+                <li><a href="/shop/index.rentals/">Rentals</a></li>
+                <li id="tab"><a href="/events/index/">Events</a></li>
 
             % if request.user.is_staff:
                   <li class="dropdown">
@@ -101,3 +113,8 @@
   </%block> <!-- footer -->
 
 </%block> <!-- admin -->
+
+<%block name="foot_links">
+<script src="${STATIC_URL}manager/media/bootstrap-switch-master/dist/js/bootstrap-switch.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+</%block>
