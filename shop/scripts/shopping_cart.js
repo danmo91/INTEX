@@ -1,5 +1,9 @@
 $(function() {
 
+
+    $('.modal-content').prop('data-backdrop','false')
+    $('.modal-content').prop('z-index','1020')
+
   // Delete from cart
   $('.delete_from_cart').on('click', function() {
 
