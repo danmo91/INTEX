@@ -30,7 +30,7 @@ $(function() {
     event.preventDefault()
     $.loadmodal({
 
-      url:'/static/manager/rentals.overdue/',
+      url:'/manager/rentals.overdue/',
       title: 'Overdue Rentals',
       width: '600px',
     }); // Loadmodal
