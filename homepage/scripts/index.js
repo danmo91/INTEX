@@ -5,7 +5,7 @@ $(function() {
     event.preventDefault()
 
     $.loadmodal({
-      url: '/homepage/index.loginform/',
+      url: '/static/homepage/index.loginform/',
       title: 'Login',
       width: '500px',
       ajax: {

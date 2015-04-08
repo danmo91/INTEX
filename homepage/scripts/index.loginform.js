@@ -14,10 +14,10 @@ $(function() {
   // load forgot password modal
   $('#forgot_password').on('click', function(){
       $.loadmodal({
-        url: '/homepage/index.forgot_password/',
+        url: '/static/homepage/index.forgot_password/',
         title: 'Forgot Password',
         width: '500px',
       }); // loadmodal
   }); // click
-  
+
 }); // Ready
