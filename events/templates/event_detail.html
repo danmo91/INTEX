@@ -3,22 +3,20 @@
 <!-- view event name, description, and areas's within event -->
 
 <%block name="center">
-    <div class="container">
+    <div class="container eventstyle">
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>${ event.name }</h1>
-            <p> ${ event.description }</p>
-            <p><a class="btn btn-primary btn-large">'Merica'!</a>
-            </p>
         </header>
-
-        <hr>
+        <div class = "row breaker">
+          <p> ${ event.description }</p>
+        </div>
 
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Featured Areas</h3>
+                <h3>Featured Areas....</h3>
             </div>
         </div>
         <!-- /.row -->
@@ -31,10 +29,8 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img class="item_image" src="${ STATIC_URL }events/media/area_images/${ area.id}.jpg" alt="">
-                    <div class="caption">
-                        <h3>${ area.name }</h3>
-                        <p>${ area.description }</p>
+                  <div class="caption">
+                        <h5>${ area.name }</h5>
                         <p>
                             <a href="/events/area_detail/${ area.id }" class="btn btn-default">More Info</a>
                         </p>

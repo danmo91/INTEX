@@ -165,10 +165,13 @@ hmod.Area.objects.all().delete()
 
 #Create new Area
 for data in [
-  ['Candle Shop', 'Sell scented candles', '1', '3'],
-  ['Bricks', 'Sell scented bricks', '2', '3'],
-  ['Gun power', 'Get blasted', '3', '3'],
-  ['Bakery', 'Sell scented bread', '4', '3'],
+  ['Candle Shop', 'Purchase or make candles!', '1', '1'],
+  ['Sewing Area', 'Purchase or learn to sew clothing!', '2', '1'],
+  ['Crafting', 'Make crafts with your kids!', '3', '3'],
+  ['Beadery', 'Make beaded necklaces!', '4', '3'],
+  ['Lunch Area', 'Purchase or make candles!', '1', '1'],
+  ['Cooking', 'Purchase or learn to sew clothing!', '2', '1'],
+  ['Games', 'Make crafts with your kids!', '3', '3'],
 ]:
 
     a = hmod.Area()
@@ -226,6 +229,40 @@ for data in [
     p.current_price = data[3]
 
     p.save()
+
+####################################### Products #######################################
+
+#Delete old Area_Items
+hmod.Area_Item.objects.all().delete()
+
+#Create new Area_Items: name, description, price, area
+for data in [
+  ['Stick Horse', 'Stick horse for children.', '2.00', '3'],
+  ['Dolls', 'Perfect doll for your daughter.', '18.00', '3'],
+  ['Candle Snuffer', 'This a great snuffer for your candle.' , '8.00', '1'],
+  ['Beeswax Candles', 'Beautiful beeswax candles.', '3.00', '1'],
+  ['Necklace', 'Beautiful necklaces.', '7.00', '4'],
+  ['Bracelet', 'Amazing bracelets.', '4.00', '4'],
+  ['Spools of Yarn', 'Many colors of yarn for your projects.', '3.00', '2'],
+  ['Loom', 'Loom to help you sew.', '9.00', '2'],
+  ['Spools of Yarn', 'Many colors of yarn for your projects.', '3.00', '8'],
+  ['Loom', 'Loom to help you sew.', '9.00', '8'],
+  ['Corn on the cob', 'Delicious corn, homemade.', '1.50', '5'],
+  ['Tea', 'Delicious tea for your lunch break.', '1.00', '5'],
+  ['Bread', 'Buy some bread after we teach you how to make it the old fashioned way.', '4.00', '6'],
+  ['Jam', 'Delicious jam for your bread.', '6.00', '6'],
+  ['Stick and Hoop', 'Fun stick and hoop for your child.', '6.00', '7'],
+  ['Stick Pull', 'Fun stick game for your child.', '3.00', '7'],
+]:
+
+    ai = hmod.Area_Item()
+    ai.name = data[0]
+    ai.description = data[1]
+    ai.price = data[2]
+    ai.area = hmod.Area.objects.get(id=data[3])
+
+    ai.save()
+
 
 ####################################### Rentals #######################################
 
