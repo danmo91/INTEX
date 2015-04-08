@@ -1,17 +1,16 @@
 <%inherit file="base.htm" />
 
 <%block name="center">
-    <div class="container">
+    <div class="container eventstyle">
 
             <!-- Jumbotron Header -->
             <header class="jumbotron hero-spacer">
                 <h1>Events</h1>
-                <p>Come experience American Colonial History like never before.</p>
-                <p><a class="btn btn-primary btn-large">'Merica'!</a>
-                </p>
             </header>
-
-            <hr>
+            <div class="row breaker">
+              <p>Come experience American Colonial History like never before.</p>
+              </p>
+            </div>
 
             <!-- Title -->
             <div class="row">
@@ -28,7 +27,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img class="item_image" src="${ STATIC_URL }events/media/event_images/${ event.id}.png" alt="">
+                        <img class="item_image" src="${ STATIC_URL }events/media/event_images/${ event.id}.jpg" alt="">
                         <div class="caption">
                             <h3>${ event.name }</h3>
                             <p>${ event.description }</p>
