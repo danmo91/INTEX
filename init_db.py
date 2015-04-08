@@ -141,10 +141,10 @@ hmod.Event.objects.all().delete()
 
 #Create new events: name, description, start, end, venue
 for data in [
-  ['Questival','The best day of your life','2015-04-06','2015-04-07','1'],
-  ['Baptism','For Dan','2015-03-12','2015-03-12','2'],
-  ['Bonfire','For the besties','2015-02-28','2015-02-28','3'],
-  ['Dinner Nite','Going away dinner for Jeff','2015-05-05','2015-05-05','4'],
+  ['Colonial Heritage Festival','Come enjoy a night out at the park with friends and family.','2015-04-06','2015-04-07','1'],
+  ['Event Volunteer Reunion','Meet up with volunteer old friends and make some new ones.','2015-03-12','2015-03-12','2'],
+  ['Childrens Day Festival','Bring your children to a fun night out at the fair.','2015-02-28','2015-02-28','3'],
+  ['Revolutionary Reenactment','Practice up! This is sure to be an eventful night.','2015-05-05','2015-05-05','4'],
 ]:
 
     #set attributes
@@ -215,7 +215,7 @@ for data in [
   ['Ribbon Candy', 'Delicious ribbon candy just like back in the good old days.', 'Candy', '8.00'],
   ['Canvas Pack', 'Perfect for carrying all of your favorite colonial items.', 'Accesories', '54.00'],
   ['Colonial Flag', 'This exact replica of the colonial flag makes for great gift.' , 'Decorations', '17.00'],
-  ['Brass Candle Holder', 'Beautiful brass candle holders for your beeswax candles.', 'Decorations', '27.00'],
+  ['Brass Candlesticks', 'Beautiful brass candlesticks to hold your beeswax candles.', 'Decorations', '27.00'],
 
 ]:
 
