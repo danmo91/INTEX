@@ -113,10 +113,10 @@ hmod.Venue.objects.all().delete()
 
 #Create new venue
 for data in [
-  ['Velor', 'Hipster paradise', '123 University', 'Provo', 'UT', '84606'],
-  ['Scera', 'Theatre', '123 State', 'Orem', 'UT', '84606'],
-  ['Brigham Young University', 'My school', '456 University', 'Provo', 'UT', '84606'],
-  ['Home', 'Where i sleep', '123 900 E', 'Provo', 'UT', '84606'],
+  ['Glen Canyon Park', 'Canyon Park', 'Provo Canyon Drive', 'Provo', 'UT', '84604'],
+  ['Scera Shell Theatre', 'Theatre', '123 State Street', 'Orem', 'UT', '84606'],
+  ['Brigham Young University', 'University', '456 University Ave', 'Provo', 'UT', '84606'],
+  ['Utah Valley Convention Center', 'Convention Center', '432 Center Street', 'Provo', 'UT', '84604'],
 ]:
 
     v = hmod.Venue()
@@ -189,10 +189,10 @@ hmod.Item.objects.all().delete()
 
 #Create new items: name, description, value, rental_price
 for data in [
-  ['Knife' , 'Stabbed Julius Caesar.  Still soaked with blood', '999.99', '9.99'],
-  ['Rope' , 'Judas Iscariot hung himself with this rope', '1.15', '1.99'],
-  ['Backpack' , 'From Cotopaxi, features real llama fit.  Really, its nice', '29.50', '12.99'],
-  ['Canteen' , '12 oz. of this stuff will quench your thirst for a while', '5.55', '5.99'],
+  ['Breeches', 'Excellent quality colonial breeches made from the finest materials.', '55.00', '10.00'],
+  ['Tricorne', 'This colonial tricorne adds the finishing touches to any costume.', '49.00', '7.00'],
+  ['Spectacles', 'People will think you are Ben Franklin himself in these spectacles.' , '211.00', '4.00'],
+  ['Almanac', 'This exact replica of Poor Richards Alamanac is in pristine condition.', '80.00', '9.00'],
 ]:
 
     i = hmod.Item()
@@ -210,10 +210,10 @@ hmod.Product.objects.all().delete()
 
 #Create new Products: name, description, category, current_price
 for data in [
-  ['Breeches', 'Excellent quality colonial breeches made from the finest materials.', 'Clothing', '10.00'],
-  ['Tricorne', 'This colonial tricorne adds the finishing touches to any costume.', 'Accesories', '7.00'],
-  ['Spectacles', 'People will think you are Ben Franklin himself in these spectacles.' , 'Accesories', '4.00'],
-  ['Almanac', 'This exact replica of Poor Richards Alamanac is in pristine condition.', 'Books', '9.00'],
+  ['Ribbon Candy', 'Delicious ribbon candy just like back in the good old days.', 'Candy', '8.00'],
+  ['Canvas Pack', 'Perfect for carrying all of your favorite colonial items.', 'Accesories', '54.00'],
+  ['Colonial Flag', 'This exact replica of the colonial flag makes for great gift.' , 'Decorations', '17.00'],
+  ['Brass Candle Holder', 'Beautiful brass candle holders for your beeswax candles.', 'Decorations', '27.00'],
 
 ]:
 
@@ -233,25 +233,25 @@ hmod.Rental.objects.all().delete()
 #Create new Rentals: description,rental_date,due_date, user
 for data in [
   # under 30
-  ['Pony Ride', '2015-03-06', '2014-03-06', '1'],
-  ['Icecream Maker', '2015-03-06', '2015-03-06', '1'],
-  ['Colonial Flag', '2015-03-06', '2015-03-06', '1'],
-  ['Abicus', '2015-03-06', '2015-03-06', '1'],
+  ['Breeches', '2015-03-06', '2014-03-06', '1'],
+  ['Tricorne', '2015-03-06', '2015-03-06', '1'],
+  ['Spectacles', '2015-03-06', '2015-03-06', '1'],
+  ['Almanac', '2015-03-06', '2015-03-06', '1'],
   # over 30
-  ['Napkin', '2015-03-06', '2015-03-01', '1'],
-  ['Charger', '2015-03-06', '2015-03-01', '1'],
-  ['Monitor', '2015-03-06', '2015-03-01', '1'],
-  ['Window', '2015-03-06', '2015-03-01', '1'],
+  ['Spectacles', '2015-03-06', '2015-03-01', '1'],
+  ['Tricorne', '2015-03-06', '2015-03-01', '1'],
+  ['Breeches', '2015-03-06', '2015-03-01', '1'],
+  ['Almanac', '2015-03-06', '2015-03-01', '1'],
   # over 60
-  ['Mouse', '2015-03-06', '2015-02-01', '1'],
-  ['Caffine', '2015-03-06', '2015-02-01', '1'],
-  ['Cliff Bar', '2015-03-06', '2015-02-01', '1'],
-  ['Paper', '2015-03-06', '2015-02-01', '1'],
+  ['Tricorne', '2015-03-06', '2015-02-01', '1'],
+  ['Almanac', '2015-03-06', '2015-02-01', '1'],
+  ['Breeches', '2015-03-06', '2015-02-01', '1'],
+  ['Spectacles', '2015-03-06', '2015-02-01', '1'],
   # over 90
-  ['Heart Break', '2015-03-06', '2015-01-01', '1'],
-  ['Clock', '2015-03-06', '2015-01-01', '1'],
-  ['Cable', '2015-03-06', '2015-01-01', '1'],
-  ['Conference', '2015-03-06', '2015-01-01', '1'],
+  ['Almanac', '2015-03-06', '2015-01-01', '1'],
+  ['Breeches', '2015-03-06', '2015-01-01', '1'],
+  ['Spectacles', '2015-03-06', '2015-01-01', '1'],
+  ['Tricorne', '2015-03-06', '2015-01-01', '1'],
 
 ]:
 
