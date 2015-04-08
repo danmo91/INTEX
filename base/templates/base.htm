@@ -7,9 +7,9 @@
 <!DOCTYPE html>
 <html>
 
+
   <%block name="meta">
-
-
+  <!-- place meta tags in different apps -->
   </%block>
 
   <head>
@@ -17,41 +17,25 @@
     <title>Colonial Heritage Foundation</title>
 
     ## add any site-wide scripts or CSS here; for example, jquery:
+    <!-- ajax, ajax form, loadmodal -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <!-- ajax jquery form plugin -->
-
     <script src="${ STATIC_URL}base/media/jquery.form.js"></script>
     <script src="${ STATIC_URL}base/media/jquery.loadmodal.js"></script>
 
-    <!-- bootstrap plugins -->
+    <!-- bootstrap plugins, notify, datatables, login -->
     <script src="${ STATIC_URL}base/media/bootstrap-notify.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
-
-    
-    <link rel="stylesheet" href="${ STATIC_URL}base/media/animate.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.css">
-
-
-    <!-- login page plugins -->
     <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
-
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-    <!-- Google Fonts -->
+
+    <!-- css animations, font-awsome, Google fonts  -->
+    <link rel="stylesheet" href="${ STATIC_URL}base/media/animate.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Arimo|Petit+Formal+Script|Alice' rel='stylesheet' type='text/css'>
-
-
-
 
 
     <%block name="head_links">
@@ -65,23 +49,23 @@
   <body>
 
     <%block name="homepage">
-
+    <!-- main section for homepage app -->
     </%block>
 
     <%block name="shop">
-
+    <!-- main section for shop app -->
     </%block>
 
     <%block name="admin">
-
+    <!-- main section for manager app -->
     </%block>
 
     <%block name="events">
-
+    <!-- main section for events app -->
     </%block>
 
     <%block name="foot_links">
-
+    <!-- addtional app-specific js links -->
     </%block>
 
     ## render the JS with the same name as this page

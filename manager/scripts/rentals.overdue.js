@@ -1,18 +1,14 @@
 $(function() {
 
+    // send email to users with overdue rentals
     $('.email_button').on('click', function(){
 
-        console.log('clicked');
-
+        // 30, 60, or 90 days overdue
         var batch = $(this).attr('data-id')
-
-        console.log('batch: ', batch)
 
         // send email via ajax
         $.ajax({url: "/manager/return.send_email/" + batch, success: function(result){
-
-            console.log('ajax happened')
-
+            // if email is sent
             if(result == "1"){
 
                 // notify
@@ -34,8 +30,9 @@ $(function() {
                   delay: 2500,
                 }); // notify
 
-
             }
+
+            // email failed
             else {
                 // notify
                 $.notify({
@@ -56,11 +53,8 @@ $(function() {
                   delay: 2500,
                 }); // notify
             }
-
-
         }}); // ajax
 
     }); // email_button
-
 
 }); // Ready

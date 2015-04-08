@@ -1,6 +1,5 @@
 <%inherit file="/base/templates/base.htm" />
 
-
 <%block name="meta">
 <meta charset="UTF-8">
 <meta name="description" content="Managers maintain CHF data">
@@ -11,18 +10,11 @@
 
 <%block name="head_links">
   <!-- App specific head links can be organized into here -->
-
-
     <link href="${STATIC_URL}manager/media/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css">
-
-
-
-
 </%block>
 
 <%block name="admin">
-
 
   <%block name="header">
     <!-- Navbar -->
@@ -63,8 +55,6 @@
                     </ul>
                   </li>
             % endif
-
-
               </ul>
 
               <form class="navbar-form navbar-left" role="search">
@@ -86,13 +76,10 @@
 
               % endif
 
-
-
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-
 
   </%block> <!-- header -->
 
@@ -100,7 +87,6 @@
   <%block name="center">
 
   </%block> <!-- center -->
-
 
 
   <%block name="footer">
@@ -112,7 +98,9 @@
 
   </%block> <!-- footer -->
 
+
 </%block> <!-- admin -->
+
 
 <%block name="foot_links">
 <script src="${STATIC_URL}manager/media/bootstrap-switch-master/dist/js/bootstrap-switch.js"></script>

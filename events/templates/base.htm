@@ -1,12 +1,12 @@
 <%inherit file="/base/templates/base.htm" />
 
+<!-- base template for event app -->
 
 <%block name="meta">
 <meta charset="UTF-8">
 <meta name="description" content="Colonial American Events in Provo, UT">
 <meta name="keywords" content="Colonial Utah America">
 <meta name="author" content="Dan Morain">
-
 </%block>
 
 <%block name="events">
@@ -32,6 +32,7 @@
                 <li><a href="/shop/index.rentals/">Rentals</a></li>
                 <li id="tab"><a href="/events/index/">Events</a></li>
 
+            <!-- display manager menu, if user is staff -->
             % if request.user.is_staff:
               <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -50,7 +51,6 @@
                   </li>
             % endif
 
-
               </ul>
 
               <form class="navbar-form navbar-left" role="search">
@@ -65,16 +65,11 @@
           </div><!-- /.container-fluid -->
         </nav>
 
-
   </%block> <!-- header -->
-
-
 
   <%block name="center">
 
   </%block> <!-- center -->
-
-
 
   <%block name="footer">
 
@@ -84,8 +79,5 @@
     </div>
 
   </%block> <!-- footer -->
-
-
-
 
 </%block> <!-- homepage -->

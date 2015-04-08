@@ -1,61 +1,60 @@
 <%inherit file="base.htm" />
 
+<!-- view display list of all events -->
+
 <%block name="center">
     <div class="container">
 
-            <!-- Jumbotron Header -->
-            <header class="jumbotron hero-spacer">
-                <h1>Events</h1>
-                <p>Come experience American Colonial History like never before.</p>
-                <p><a class="btn btn-primary btn-large">'Merica'!</a>
-                </p>
-            </header>
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Events</h1>
+            <p>Come experience American Colonial History like never before.</p>
+            <p><a class="btn btn-primary btn-large">'Merica'!</a>
+            </p>
+        </header>
 
-            <hr>
+        <hr>
 
-            <!-- Title -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3>Latest Features</h3>
-                </div>
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Latest Features</h3>
             </div>
-            <!-- /.row -->
+        </div>
+        <!-- /.row -->
 
-            <!-- Page Features -->
-            <div class="row text-center items">
+        <!-- Page Features -->
+        <div class="row text-center items">
 
-              %for event in events:
+          %for event in events:
 
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img class="item_image" src="${ STATIC_URL }events/media/event_images/${ event.id}.png" alt="">
-                        <div class="caption">
-                            <h3>${ event.name }</h3>
-                            <p>${ event.description }</p>
-                            <p>
-                                <a href="/events/event_detail/${ event.id }" class="btn btn-default">More Info</a>
-                            </p>
-                        </div>
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img class="item_image" src="${ STATIC_URL }events/media/event_images/${ event.id}.png" alt="">
+                    <div class="caption">
+                        <h3>${ event.name }</h3>
+                        <p>${ event.description }</p>
+                        <p>
+                            <a href="/events/event_detail/${ event.id }" class="btn btn-default">More Info</a>
+                        </p>
                     </div>
                 </div>
-
-              %endfor
-
-
             </div>
-            <!-- /.row -->
 
-            <hr>
-
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright Your Website 2014</p>
-                    </div>
-                </div>
-            </footer>
+          %endfor
 
         </div>
+        <!-- /.row -->
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
 
 </%block>

@@ -1,14 +1,13 @@
 $(function() {
 
+  // load data-table
+  $('#data-table').DataTable();
 
-    $('#data-table').DataTable();
 
   // overdue rentals
   $('#show_overdue_rentals').on('click', function(){
 
     event.preventDefault();
-
-
     $.loadmodal({
 
       url:'/manager/rentals.overdue/',
@@ -18,16 +17,14 @@ $(function() {
 
   }); // Click
 
+
   // Rental Return
-
   $('.return').on('click', function(){
-
-      console.log('clicked')
 
       event.preventDefault();
 
+      // get rental id
       id = $(this).attr('data-id');
-      console.log('id:', id)
 
       $.loadmodal({
           url:'/manager/return.return_form/' + id,
@@ -35,17 +32,11 @@ $(function() {
           width: '600px',
       }); //Loadmodal
 
-
   }); // click
 
+  // Submit return form
   $('#returnform').ajaxForm(function(data){
-
     $('#jquery-loadmodal-js-body').html(data);
-
   }); // ajaxform
-
-
-
-
 
 }); // Ready
