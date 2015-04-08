@@ -165,10 +165,10 @@ hmod.Area.objects.all().delete()
 
 #Create new Area
 for data in [
-  ['Candle Shop', 'Sell scented candles', '1', 'Questival'],
-  ['Bricks', 'Sell scented bricks', '2', 'Baptism'],
-  ['Gun power', 'Get blasted', '3', 'Dinner Nite'],
-  ['Bakery', 'Sell scented bread', '4', 'Bonfire'],
+  ['Candle Shop', 'Sell scented candles', '1', '3'],
+  ['Bricks', 'Sell scented bricks', '2', '3'],
+  ['Gun power', 'Get blasted', '3', '3'],
+  ['Bakery', 'Sell scented bread', '4', '3'],
 ]:
 
     a = hmod.Area()
@@ -177,7 +177,7 @@ for data in [
     a.name = data[0]
     a.description = data[1]
     a.venue = hmod.Venue.objects.get(id=data[2])
-    a.event = hmod.Event.objects.get(name=data[3])
+    a.event = hmod.Event.objects.get(id=data[3])
 
     #save
     a.save()
