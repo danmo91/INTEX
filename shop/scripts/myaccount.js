@@ -4,15 +4,12 @@ $(function() {
   $('#edit_user_modal').on('click', function(){
 
     event.preventDefault();
-
     $.loadmodal({
-
       url: '/shop/myaccount.edit/',
       title: 'Edit',
       width: '500px',
       ajax: {
             success: function() {
-              
 
               $('#id_username').addClass('form-control')
               $('#id_password').addClass('form-control')
@@ -27,16 +24,13 @@ $(function() {
               $('#id_last_name').prop('placeholder','Last Name')
               $('#id_email').prop('placeholder','Email')
               $('#id_phone').prop('placeholder','Phone')
-
-
-
             },//
             // any other options from the regular $.ajax call (see JQuery docs)
           },
-
     });
 
   }); // Click
+
 
   $('#editform').ajaxForm(function(data){
 
@@ -76,6 +70,7 @@ $(function() {
 
   }); // Click
 
+
   $('#change_password_form').ajaxForm(function(data){
 
     $('#jquery-loadmodal-js-body').html(data);
@@ -92,8 +87,6 @@ $(function() {
 
 
   }); // click
-
-
 
 
 }); // ready

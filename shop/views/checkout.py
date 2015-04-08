@@ -9,25 +9,31 @@ import requests
 import datetime
 from django.core.mail import send_mail, EmailMessage
 
-
-
-
 templater = get_renderer('shop')
+
+'''
+    checkout:
+
+        - ensures user is logged in
+        - sends user to order sumary page
+        - collects payment and shipping information
+        - emails receipt to user
+        - sends user to receipt page
+
+'''
 
 @view_function
 def process_request(request):
-
+    '''
+        process_request: Generates order summary page with list of products and items
+    '''
     params = {}
 
     # check to see if user needs to login to checkout
-
     user = request.user
     if request.user.username == '':
-
         request.session['login_required'] = True
         return HttpResponseRedirect('/shop/index/')
-
-
 
     # get shopping_cart items
     items = {}
@@ -65,7 +71,9 @@ def process_request(request):
 
 @view_function
 def enter_payment(request):
-
+    '''
+        enter_payment: Collects and verifies shipping and payment info
+    '''
     params = {}
 
     form = CheckoutForm(initial = {
@@ -76,12 +84,9 @@ def enter_payment(request):
     })
 
     if request.method == 'POST':
-
         # get form
         form = CheckoutForm(request.POST)
-
         if form.is_valid():
-
             request.session['credit_card'] = {
                 'creditcard' : '4732817300654',
                 'exp_month' : '10',
@@ -116,6 +121,9 @@ def enter_payment(request):
     return templater.render_to_response(request, 'enter_payment.html', params)
 
 def get_total(request):
+    '''
+        get_total: Returns the total cost of all items and products in cart
+    '''
 
     total = 0
 
@@ -140,6 +148,9 @@ def get_total(request):
 
 @view_function
 def charge_card(request):
+    '''
+        charge_card: charges card via REST API,
+    '''
 
     params = {}
 
@@ -172,19 +183,12 @@ def charge_card(request):
         'description': 'Charge for cosmo@is411@byu.edu',
     })
 
-    # check repsonse text
-    print(r.text)
-
     # parse response dictionary
     resp = r.json()
     if 'error' in resp:
         print('ERROR: ', resp['error'])
 
     else:
-        print(resp.keys())
-        print(resp['ID'])
-
-        # finish the transaction and redirect
 
         # if order, create order object
         if len(request.session['shopping_cart']) > 0:
@@ -219,12 +223,13 @@ def charge_card(request):
         # redirect to receipt
         return HttpResponseRedirect('/shop/checkout.receipt')
 
-
-
     return templater.render_to_response(request, 'enter_payment.html', params)
 
 @view_function
 def receipt(request):
+    '''
+        receipt: sends receipt email to user, sends user to receipt page
+    '''
 
     params = {}
 
@@ -297,14 +302,12 @@ def receipt(request):
 
 
 class CheckoutForm(forms.Form):
+    '''
+        CheckoutForm: Collects shipping and credit card information
+    '''
     street = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'street'}))
     city = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'city'}))
-
-
-    # state = forms.CharField(required=True, widget=forms.Select(choices=STATE_CHOICES, attrs={'class': 'selectpicker', 'data-width':'100%', 'multiple title':'state'} ))
     state = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'state'}))
-
-
     zip_code = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'zip'}))
     creditcard = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'credit card number'}))
     exp_month = forms.CharField(required=True, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'exp. month "mm"'}))

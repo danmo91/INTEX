@@ -6,9 +6,21 @@ import homepage.models as hmod
 
 templater = get_renderer('shop')
 
+'''
+    shopping_cart:
+
+        - fills shopping cart modal with items and products
+        - add items and products to cart
+        - delete items and products from cart
+
+'''
+
 
 @view_function
 def process_request(request):
+    '''
+        process_request: returns list of items and products to cart template
+    '''
 
     params = {}
 
@@ -59,6 +71,10 @@ def process_request(request):
 
 @view_function
 def add(request):
+    '''
+        add: add's item or product to rental or shopping cart
+        returns user to view cart
+    '''
 
     object_id = request.urlparams[0]
     qty = int(request.urlparams[1])
@@ -93,6 +109,10 @@ def add(request):
 
 @view_function
 def delete(request):
+    '''
+        delete: deletes selected item or product form cart
+        returns user to cart view
+    '''
 
     # product_id and quantity
     object_id = request.urlparams[0]

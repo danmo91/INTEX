@@ -1,13 +1,10 @@
 $(function() {
 
   // Login
-
   $('#show_login_modal').on('click', function(){
 
     event.preventDefault();
-
     $.loadmodal({
-
       url: '/homepage/index.loginform/',
       title: 'Login',
       width: '500px',
@@ -22,22 +19,17 @@ $(function() {
             },//
             // any other options from the regular $.ajax call (see JQuery docs)
           },
-
-    })
-
+    }); // loadmodal
 
   }); // click
 
-  // Show cart
 
+  // Show cart
   $('#show_cart').on('click', function(){
 
     event.preventDefault();
-    console.log("showing cart")
-
 
     $.loadmodal({
-
       url: '/shop/shopping_cart/',
       title: 'Shopping Cart',
       width: '800px',
@@ -52,9 +44,7 @@ $(function() {
         $('.button-panel').find('.btn').addClass('pull-right btn-warning')
         $('.button-panel').css({height: "60px"})
       },
-
-    })
-
+    }); // load modal
   }); // click
 
 
@@ -92,10 +82,7 @@ $(function() {
             },//
             // any other options from the regular $.ajax call (see JQuery docs)
           },
-
-    })
-
-
+    });
 
   }); // click
 
@@ -143,11 +130,6 @@ $(function() {
     // get id
     id = $(this).attr('data-id');
 
-    console.log('product:', product);
-    console.log('id:', id);
-    console.log('qty:', qty);
-
-
     $.loadmodal({
 
       url: '/shop/shopping_cart.add/' + id + '/' + qty + '/' + product,
@@ -172,7 +154,6 @@ $(function() {
 
 
   // Delete from cart
-
   $('.delete_from_cart').on('click', function() {
 
     var product = $(this).attr('data-product');
@@ -194,33 +175,21 @@ $(function() {
         $('.button-panel').find('.btn').addClass('pull-right btn-warning')
         $('.button-panel').css({height: "60px"})
       },
-
-
     }); // loadmodal
-
   }); // click
 
 
   // Search
-
   $('#search').on('click', function(){
 
-    console.log("clicked")
-
     var input = $('#search_input').val()
-
-    console.log("input:", input)
-
     var options = {
-
       data:{
 
         'input': input,
 
       },
       success: function(data) {
-
-        console.log("success function")
 
         $('.items').html(data)
       },

@@ -5,19 +5,25 @@ from django import forms
 import homepage.models as hmod
 from django.contrib.auth import authenticate, login, logout
 
-
-
 templater = get_renderer('shop')
+
+'''
+    item_detail:
+
+        - returns product to detail template
+        - returns item to detail template
+'''
 
 @view_function
 def process_request(request):
-
+    '''
+        process_request: returns selected product to detail template
+    '''
     params = {}
 
     form = SearchForm()
 
     params['form'] = form
-
 
     # get the id of the item
 
@@ -38,11 +44,13 @@ def process_request(request):
 
     params['num_items'] = num_items
 
-
     return templater.render_to_response(request, 'item_detail.html', params)
 
 @view_function
 def rental(request):
+    '''
+        rental: returns selected item to detail template
+    '''
 
     params = {}
 
@@ -68,5 +76,8 @@ def rental(request):
 
 
 class SearchForm(forms.Form):
+    '''
+        SearchForm: collects input for searching products
+    '''
 
     input_field = forms.CharField(required=True, widget=forms.TextInput(attrs ={'placeholder':'Search', 'class':'form-control'}))

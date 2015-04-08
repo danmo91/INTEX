@@ -1,6 +1,6 @@
 $(function() {
 
-
+  // add classes to signup modal
   $('#id_username').addClass('form-control')
   $('#id_password').addClass('form-control')
   $('#id_first_name').addClass('form-control')
@@ -15,10 +15,9 @@ $(function() {
   $('#id_email').prop('placeholder','Email')
   $('#id_phone').prop('placeholder','Phone')
 
+  // submit form via ajax
   $('#signup_form').ajaxForm(function(data){
-
     $('#jquery-loadmodal-js-body').html(data);
-
   }); // ajaxform
 
 

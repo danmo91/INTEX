@@ -1,16 +1,10 @@
 $(function() {
 
-
   // Delete from cart
-
   $('.delete_from_cart').on('click', function() {
-
-    console.log('delete clicked')
 
     var id = $(this).attr('data-id');
     var product = $(this).attr('data-product');
-
-    console.log('product?:', product)
 
     $.loadmodal({
 
@@ -29,12 +23,8 @@ $(function() {
         $('.button-panel').css({height: "60px"})
       },
 
-
     }); // loadmodal
 
   }); // click
-
-
-
 
 }); // ready

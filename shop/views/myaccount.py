@@ -5,12 +5,22 @@ from django import forms
 import homepage.models as hmod
 from django.contrib.auth import authenticate, login, logout
 
-
-
 templater = get_renderer('shop')
+
+'''
+    myaccount:
+
+        - returns logged in user's account information
+        - allows user to edit account information
+        - allows user to change password
+
+'''
 
 @view_function
 def process_request(request):
+    '''
+        process_request: returns user object to account template
+    '''
 
     params = {}
 
@@ -37,6 +47,9 @@ def process_request(request):
 
 @view_function
 def edit(request):
+    '''
+        edit: returns and validates edit form which updates user object
+    '''
 
     params = {}
 
@@ -84,6 +97,9 @@ def edit(request):
 
 @view_function
 def change_password(request):
+    '''
+        change_password: returns and validates change_password form, allows user to change password
+    '''
 
     params = {}
 
@@ -122,6 +138,9 @@ def change_password(request):
 
 
 class UserEditForm(forms.Form):
+    '''
+        UserEditForm: collects information used to edit user object
+    '''
 
     username = forms.CharField(label="Username", required=True, max_length=100)
     first_name = forms.CharField(label="First Name",required=True, max_length=100)
@@ -139,6 +158,9 @@ class UserEditForm(forms.Form):
         return self.cleaned_data
 
 class ChangePasswordForm(forms.Form):
+    '''
+        ChangePasswordForm: collects old password and double confirms new password, raises error when incorrect password is passed
+    '''
 
     old_password = forms.CharField(label="Old Password", required=True, widget = forms.PasswordInput)
     new_password = forms.CharField(label="New Password", required=True, widget = forms.PasswordInput)
