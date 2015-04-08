@@ -37,6 +37,6 @@ body{
 }
 
 .modal-content {
-    data-backdrop:"false";
-    z-index:1020;
+    data-backdrop:"false" !important;
+    z-index:1020 !important;
 }
