@@ -1,7 +1,6 @@
 from django_mako_plus.controller.router import get_renderer
 from django_mako_plus.controller import view_function
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from datetimewidget.widgets import DateWidget
 from django.core.mail import send_mail, EmailMessage
 import datetime
 from django import forms
