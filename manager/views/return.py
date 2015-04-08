@@ -43,24 +43,33 @@ def return_form(request):
 
         form = ReturnForm(request.POST)
         if form.is_valid():
-            rental.damages = form.cleaned_data['damage']
+
+            # set return date
             rental.return_date = datetime.date.today()
             rental.returned = True
             rental.save()
 
+
+            # update item
             if rental.item:
                 item = rental.item
                 item.available = True
+                if form.cleaned_data['damage']:
+                    item.condition = form.cleaned_data['damage']
                 item.save()
 
-            # user = rental.user
-            # if not form.cleaned_data['late_fee_waived']:
-            #     Decimal.add(user.account_balance, late_fee)
-            #     print('pay late fee')
-            #
-            # if not form.cleaned_data['damage_fee_waived']:
-            #     Decimal.add(user.account_balance, Decimal(form.cleaned_data['damage_fee']))
-            #     print('pay damage fee')
+            # update user
+            if rental.user:
+                user = rental.user
+
+                if form.cleaned_data['late_fee'] != '' and form.cleaned_data['late_fee_waived'] == False:
+                    user.account_balance += int(form.cleaned_data['late_fee'])
+                    
+                if form.cleaned_data['damage_fee'] != '' and form.cleaned_data['damage_fee_waived'] == False:
+                    user.account_balance += int(form.cleaned_data['damage_fee'])
+
+                user.save()
+
 
             return HttpResponse('''
                 <script>
@@ -153,21 +162,21 @@ class ReturnForm(forms.Form):
 
     DAMAGE_CHOICES = (
         ('', ''),
-        (1.00, '1.00'),
-        (2.00, '2.00'),
-        (3.00, '3.00'),
-        (4.00, '4.00'),
+        (1, '1.00'),
+        (2, '2.00'),
+        (3, '3.00'),
+        (4, '4.00'),
     )
 
     LATE_CHOICES = (
         ('', ''),
-        (2.00, '2.00'),
+        (2, '2.00'),
     )
 
 
 
     damage = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control field', 'placeholder': 'Enter damage description'}))
-    late_fee = forms.CharField(required=True, widget=forms.Select(choices=LATE_CHOICES, attrs={'class': 'selectpicker', 'data-width':'100%', 'title':'Late Fee'}))
+    late_fee = forms.CharField(required=False, widget=forms.Select(choices=LATE_CHOICES, attrs={'class': 'selectpicker', 'data-width':'100%', 'title':'Late Fee'}))
     damage_fee = forms.CharField(required=False, widget=forms.Select(choices=DAMAGE_CHOICES, attrs={'class': 'selectpicker', 'data-width':'100%', 'title':'Damage Fee'}))
     late_fee_waived = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'type':"checkbox",'class':"my-checkbox"}))
     damage_fee_waived = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'type':"checkbox",'class':"my-checkbox right"}))
