@@ -95,9 +95,9 @@ def edit(request):
 
 @view_function
 def delete(request):
-'''
-    delete: Deletes selected Product
-'''
+    '''
+        delete: Deletes selected Product
+    '''
     params = {}
 
     # try and get product
