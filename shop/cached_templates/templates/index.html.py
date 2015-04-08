@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428362182.446773
+_modified_time = 1428453511.408071
 _enable_loop = True
 _template_filename = 'C:\\Users\\brian_000\\projects\\intex\\shop\\templates/index.html'
 _template_uri = 'index.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        login_required = context.get('login_required', UNDEFINED)
         items = context.get('items', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def center():
             return render_center(context._locals(__M_locals))
-        login_required = context.get('login_required', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'center'):
@@ -48,11 +48,11 @@ def render_body(context,**pageargs):
 def render_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        login_required = context.get('login_required', UNDEFINED)
         items = context.get('items', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def center():
             return render_center(context)
-        login_required = context.get('login_required', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if login_required:
@@ -67,7 +67,7 @@ def render_center(context,**pageargs):
             __M_writer(str( item.name ))
             __M_writer('</h3>\r\n                        <p>')
             __M_writer(str( item.description ))
-            __M_writer('</p>\r\n                        <p>\r\n                            <a href="#" data-id="')
+            __M_writer('</p>\r\n                          <p>\r\n                            <a href="#" data-id="')
             __M_writer(str( item.id))
             __M_writer('" data-product="True" class="btn btn-primary add_to_cart">Add to Cart</a> <a href="/shop/item_detail/')
             __M_writer(str( item.id ))
@@ -80,6 +80,6 @@ def render_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:\\Users\\brian_000\\projects\\intex\\shop\\templates/index.html", "uri": "index.html", "source_encoding": "ascii", "line_map": {"64": 44, "65": 44, "66": 44, "67": 46, "68": 46, "69": 47, "70": 47, "71": 49, "72": 49, "73": 49, "74": 49, "75": 56, "81": 75, "27": 0, "37": 1, "42": 77, "48": 3, "57": 3, "58": 5, "59": 6, "60": 12, "61": 40, "62": 41, "63": 44}}
+{"filename": "C:\\Users\\brian_000\\projects\\intex\\shop\\templates/index.html", "line_map": {"64": 44, "65": 44, "66": 44, "67": 46, "68": 46, "69": 47, "70": 47, "71": 49, "72": 49, "73": 49, "74": 49, "75": 56, "81": 75, "27": 0, "37": 1, "42": 77, "48": 3, "57": 3, "58": 5, "59": 6, "60": 12, "61": 40, "62": 41, "63": 44}, "source_encoding": "ascii", "uri": "index.html"}
 __M_END_METADATA
 """

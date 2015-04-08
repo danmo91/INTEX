@@ -210,10 +210,10 @@ hmod.Product.objects.all().delete()
 
 #Create new Products: name, description, category, current_price
 for data in [
-  ['Poem Journal', 'Jot down anything that comes to your mind.  I sure have a lot.', 'Crafts', '14.00'],
-  ['Ice', 'Cool off with this stuff.  It really has a chill feeling.', 'Household', '2.00'],
-  ['Quill', 'Birds of a feather, make me want to kill them so i can write with their feathers', 'Collectors', '8.00'],
-  ['Abacus', 'Count better than anyone', 'Business', '13.00'],
+  ['Breeches', 'Excellent quality colonial breeches made from the finest materials.', 'Clothing', '10.00'],
+  ['Tricorne', 'This colonial tricorne adds the finishing touches to any costume.', 'Accesories', '7.00'],
+  ['Spectacles', 'People will think you are Ben Franklin himself in these spectacles.' , 'Accesories', '4.00'],
+  ['Almanac', 'This exact replica of Poor Richards Alamanac is in pristine condition..', 'Books', '9.00'],
 
 ]:
 
