@@ -141,10 +141,10 @@ hmod.Event.objects.all().delete()
 
 #Create new events: name, description, start, end, venue
 for data in [
-  ['Questival','The best day of your life','2015-04-06','2015-04-07','Velor'],
-  ['Baptism','For Dan','2015-03-12','2015-03-12','Velor'],
-  ['Bonfire','For the besties','2015-02-28','2015-02-28','Velor'],
-  ['Dinner Nite','Going away dinner for Jeff','2015-05-05','2015-05-05','Velor'],
+  ['Questival','The best day of your life','2015-04-06','2015-04-07','1'],
+  ['Baptism','For Dan','2015-03-12','2015-03-12','2'],
+  ['Bonfire','For the besties','2015-02-28','2015-02-28','3'],
+  ['Dinner Nite','Going away dinner for Jeff','2015-05-05','2015-05-05','4'],
 ]:
 
     #set attributes
@@ -153,7 +153,7 @@ for data in [
     e.description = data[1]
     e.start = data[2]
     e.end = data[3]
-    e.venue = hmod.Venue.objects.get(name=data[4])
+    e.venue = hmod.Venue.objects.get(id=data[4])
 
     #save
     e.save()
@@ -165,10 +165,10 @@ hmod.Area.objects.all().delete()
 
 #Create new Area
 for data in [
-  ['Candle Shop', 'Sell scented candles', 'Scera', 'Questival'],
-  ['Bricks', 'Sell scented bricks', 'Scera', 'Baptism'],
-  ['Gun power', 'Get blasted', 'Home', 'Dinner Nite'],
-  ['Bakery', 'Sell scented bread', 'Scera', 'Bonfire'],
+  ['Candle Shop', 'Sell scented candles', '1', 'Questival'],
+  ['Bricks', 'Sell scented bricks', '2', 'Baptism'],
+  ['Gun power', 'Get blasted', '3', 'Dinner Nite'],
+  ['Bakery', 'Sell scented bread', '4', 'Bonfire'],
 ]:
 
     a = hmod.Area()
@@ -176,7 +176,7 @@ for data in [
     # set attributes
     a.name = data[0]
     a.description = data[1]
-    a.venue = hmod.Venue.objects.get(name=data[2])
+    a.venue = hmod.Venue.objects.get(id=data[2])
     a.event = hmod.Event.objects.get(name=data[3])
 
     #save
