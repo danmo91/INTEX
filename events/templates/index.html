@@ -20,34 +20,33 @@
             <div class="col-lg-12">
                 <h3>Latest Features</h3>
             </div>
-        </div>
 
-        <!-- Page Features -->
-        <div class="row text-center items">
+            <!-- /.row -->
 
-         %for event in events:
+            <!-- Page Features -->
+            <div class="row text-center items">
 
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img class="item_image" src="${ STATIC_URL }events/media/event_images/${ event.id}.jpg" alt="">
-                    <div class="caption">
-                        <h3>${ event.name }</h3>
-                        <p>${ event.description }</p>
-                        <p>
-                            <a href="/events/event_detail/${ event.id }" class="btn btn-default">More Info</a>
-                        </p>
+              %for event in events:
+
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail">
+                        <img class="item_image" src="${ STATIC_URL }events/media/event_images/${ event.id}.jpg" alt="">
+                        <div class="caption">
+                            <h3>${ event.name }</h3>
+                            <p>${ event.description }</p>
+                            <p>
+                                <a href="/events/event_detail/${ event.id }" class="btn btn-default">More Info</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        %endfor
-
-        </div>
+          %endfor
 
 
 
         </div>
-
         <!-- /.row -->
         <hr>
         <!-- Footer -->
