@@ -30,3 +30,8 @@
 	width: 100%;
 	height: 5px;*/
 }
+
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

@@ -153,3 +153,7 @@ img {
 	margin-top: 15px;
 
 }
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}
