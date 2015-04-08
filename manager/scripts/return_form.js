@@ -7,5 +7,13 @@ $(function() {
 
   }); // ajaxform
 
+  $(".my-checkbox").bootstrapSwitch({
+
+      size: 'small',
+
+
+  }); // bootstrap switch
+
+  $('.selectpicker').selectpicker();
 
 }); // Ready

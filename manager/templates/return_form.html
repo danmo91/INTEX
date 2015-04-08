@@ -11,30 +11,41 @@
 
         %endfor
 
-        %for field in form:
-
-            ${ field.label }
-
-            ${ field }
-
-            %if field.errors != '':
-
-            ${ field.errors }
-
-            %endif
-
-        %endfor
-
-        <h4>Late Fee: $${ round(late_fee,2) }</h4>
+        ${ form['damage'] }
+        ${ form['damage'].errors }
 
 
+        <div class="checkboxy">
+
+            ${ form['late_fee'] }
+            ${ form['late_fee'].errors}
+
+        </div>
+
+        <div class="checkboxy right">
+            ${ form['damage_fee'] }
+            ${ form['damage_fee'].errors}
+        </div>
+
+        <div class="checkboxy">
+
+                Waive Fee
+                ${ form['late_fee_waived'] }
+                ${ form['late_fee_waived'].errors }
+
+        </div>
+
+        <div class="checkboxy right">
+
+            Waive Fee
+            ${ form['damage_fee_waived'] }
+            ${ form['damage_fee_waived'].errors }
+
+        </div>
+        <hr>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Return</button>
 
 </form>
-
-
-
-
 
 </%block>
