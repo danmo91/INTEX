@@ -172,6 +172,7 @@ for data in [
   ['Lunch Area', 'Purchase or make candles!', '1', '1'],
   ['Cooking', 'Purchase or learn to sew clothing!', '2', '1'],
   ['Games', 'Make crafts with your kids!', '3', '3'],
+  ['Sewing Area', 'Purchase or learn to sew clothing!', '2', '3'],
 ]:
 
     a = hmod.Area()
@@ -245,8 +246,8 @@ for data in [
   ['Bracelet', 'Amazing bracelets.', '4.00', '4'],
   ['Spools of Yarn', 'Many colors of yarn for your projects.', '3.00', '2'],
   ['Loom', 'Loom to help you sew.', '9.00', '2'],
-  # ['Spools of Yarn', 'Many colors of yarn for your projects.', '3.00', '8'],
-  # ['Loom', 'Loom to help you sew.', '9.00', '8'],
+  ['Spools of Yarn', 'Many colors of yarn for your projects.', '3.00', '8'],
+  ['Loom', 'Loom to help you sew.', '9.00', '8'],
   ['Corn on the cob', 'Delicious corn, homemade.', '1.50', '5'],
   ['Tea', 'Delicious tea for your lunch break.', '1.00', '5'],
   ['Bread', 'Buy some bread after we teach you how to make it the old fashioned way.', '4.00', '6'],

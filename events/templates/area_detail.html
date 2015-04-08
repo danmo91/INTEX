@@ -13,13 +13,14 @@
             <div class= "row breaker">
               <p> ${ area.description }</p>
             </div>
-
-            <!-- Title -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3>Available Products</h3>
-                </div>
-            </div>
+            % if products:
+              <!-- Title -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h3>Available Products</h3>
+                  </div>
+              </div>
+            %endif
             <!-- /.row -->
 
             <!-- Page Features -->
