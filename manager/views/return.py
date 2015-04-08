@@ -8,11 +8,18 @@ from django import forms
 import homepage.models as hmod
 from decimal import Decimal
 
-
 templater = get_renderer('manager')
+
+'''
+    return: CRUD functions for returns
+
+'''
 
 @view_function
 def process_request(request):
+    '''
+        process_request: Return list of rentals that have not been returned
+    '''
 
     params = {}
 
@@ -25,6 +32,9 @@ def process_request(request):
 
 @view_function
 def return_form(request):
+    '''
+        return_form: Sends return form to agent to collect information about return
+    '''
 
     params = {}
 
@@ -64,7 +74,7 @@ def return_form(request):
 
                 if form.cleaned_data['late_fee'] != '' and form.cleaned_data['late_fee_waived'] == False:
                     user.account_balance += int(form.cleaned_data['late_fee'])
-                    
+
                 if form.cleaned_data['damage_fee'] != '' and form.cleaned_data['damage_fee_waived'] == False:
                     user.account_balance += int(form.cleaned_data['damage_fee'])
 
@@ -87,10 +97,16 @@ def return_form(request):
 
 @view_function
 def send_email(request):
+    '''
+        send_email:
+
+            - Get's list of overdue rentals at input interval (batch)
+            - Get's list of user emails
+            - sends email to users with overdue items
+    '''
     params = {}
 
     batch = request.urlparams[0]
-    print('batch:', batch)
 
     overdue_rentals = []
 
@@ -101,22 +117,18 @@ def send_email(request):
         # get list of overdue rentals
         end = (datetime.date.today() - datetime.timedelta(days=30))
         overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
-        print('over_30:', overdue_rentals)
 
     if batch == 'sixty':
         # get list of overdue rentals
         start = (datetime.date.today() - datetime.timedelta(days=90))
         end = (datetime.date.today() - datetime.timedelta(days=60))
         overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
-        print('over_60:', overdue_rentals)
 
     if batch == 'ninety':
         # get list of overdue rentals
         start = (datetime.date.today() - datetime.timedelta(days=365))
         end = (datetime.date.today() - datetime.timedelta(days=90))
         overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
-        print('over_90:', overdue_rentals)
-
 
     # get users emails
     user_emails = []
@@ -159,7 +171,9 @@ def send_email(request):
 
 
 class ReturnForm(forms.Form):
-
+    '''
+        ReturnForm: Fields to collect return info- damage, late_fee, damage_fee
+    '''
     DAMAGE_CHOICES = (
         ('', ''),
         (1, '1.00'),
@@ -172,8 +186,6 @@ class ReturnForm(forms.Form):
         ('', ''),
         (2, '2.00'),
     )
-
-
 
     damage = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control field', 'placeholder': 'Enter damage description'}))
     late_fee = forms.CharField(required=False, widget=forms.Select(choices=LATE_CHOICES, attrs={'class': 'selectpicker', 'data-width':'100%', 'title':'Late Fee'}))

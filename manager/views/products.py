@@ -6,38 +6,40 @@ import datetime
 from django import forms
 import homepage.models as hmod
 
-
 templater = get_renderer('manager')
+
+'''
+    products: CRUD functions for product
+
+'''
 
 @view_function
 def process_request(request):
     '''
-        Return list of products, sorted by name
+        process_request: Return list of products, sorted by name
     '''
-
     params = {}
 
-
-    # get list of events, sorted by start date
+    # get list of products, sorted by name
     products = hmod.Product.objects.all().order_by('name')
-
 
     # pass list to template
     params['products'] = products
-
 
     return templater.render_to_response(request, 'products.html', params)
 
 
 @view_function
 def create(request):
-
+    '''
+        create: Creates empty product, sends user to edit page
+    '''
     params = {}
 
-    # create event object
+    # create product object
     product = hmod.Product()
 
-    # save new event
+    # save new product
     product.save()
 
     # send user to edit page
@@ -45,17 +47,19 @@ def create(request):
 
 @view_function
 def edit(request):
-
+    '''
+        edit: Sends form for editing proudct details
+    '''
     params = {}
 
-    # try to get event
+    # try to get product
     try:
         product = hmod.Product.objects.get(id = request.urlparams[0])
     except hmod.Product.DoesNotExist:
-        # redirect to event list page
+        # redirect to product list page
         return HttpResponseRedirect('/manager/products/')
 
-    # initialize event edit form
+    # initialize event product form
     form = ProductEditForm(initial={
         'name' : product.name,
         'description': product.description,
@@ -72,7 +76,7 @@ def edit(request):
         # if form is valid
         if form.is_valid():
 
-            # item event object
+            # item product object
             product.name = form.cleaned_data['name']
             product.description = form.cleaned_data['description']
             product.category = form.cleaned_data['category']
@@ -81,7 +85,7 @@ def edit(request):
 
             product.save()
 
-            # send to event list page
+            # send to product list page
             return HttpResponseRedirect('/manager/products/')
 
 
@@ -91,28 +95,33 @@ def edit(request):
 
 @view_function
 def delete(request):
-
+'''
+    delete: Deletes selected Product
+'''
     params = {}
 
-    # try and get event
+    # try and get product
     try:
         product = hmod.Product.objects.get(id=request.urlparams[0])
 
-    # if event does not exist
+    # if product does not exist
     except hmod.Product.DoesNotExist:
 
-        # go back to event list page
+        # go back to product list page
         return HttpResponseRedirect('/manager/products/')
 
 
-    # else, delete event
+    # else, delete product
     product.delete()
 
-    # return to event list page
+    # return to product list page
     return HttpResponseRedirect('/manager/products/')
 
 
 class ProductEditForm(forms.Form):
+    '''
+        ProductEditForm: Fields to edit product name, description, category, current_price
+    '''
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Master Sword'}))
     description = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Temple of Light'}))
     category = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Weapon'}))

@@ -6,31 +6,33 @@ import datetime
 from django import forms
 import homepage.models as hmod
 
-
 templater = get_renderer('manager')
+
+'''
+    users: CRUD functions for users
+
+'''
 
 @view_function
 def process_request(request):
     '''
-        Return list of users, sorted by last name
+        process_request: Return list of users, sorted by last name
     '''
-
     params = {}
 
-
-    # get list of events, sorted by start date
+    # get list of users, sorted by last name
     users = hmod.User.objects.all().order_by('last_name')
-
 
     # pass list to template
     params['users'] = users
 
-
     return templater.render_to_response(request, 'users.html', params)
-
 
 @view_function
 def create(request):
+    '''
+        create: Creates empty user, sends user to edit page
+    '''
 
     params = {}
 
@@ -48,17 +50,20 @@ def create(request):
 
 @view_function
 def edit(request):
+    '''
+        edit: Sends form for editing user details
+    '''
 
     params = {}
 
-    # try to get event
+    # try to get user
     try:
         user = hmod.User.objects.get(id = request.urlparams[0])
     except hmod.User.DoesNotExist:
-        # redirect to event list page
+        # redirect to user list page
         return HttpResponseRedirect('/manager/users/')
 
-    # initialize event edit form
+    # initialize event user form
     form = UserEditForm(initial={
         'username' : user.username,
         'first_name': user.first_name,
@@ -105,6 +110,9 @@ def edit(request):
 
 @view_function
 def delete(request):
+    '''
+        delete: Deletes selected user
+    '''
 
     params = {}
 
@@ -112,21 +120,24 @@ def delete(request):
     try:
         user = hmod.User.objects.get(id=request.urlparams[0])
 
-    # if event does not exist
+    # if user does not exist
     except hmod.User.DoesNotExist:
 
-        # go back to event list page
+        # go back to user list page
         return HttpResponseRedirect('/manager/users/')
 
 
-    # else, delete event
+    # else, delete user
     user.delete()
 
-    # return to event list page
+    # return to user list page
     return HttpResponseRedirect('/manager/users/')
 
 
 class UserEditForm(forms.Form):
+    '''
+        UserEditForm: Fields to edit user username, password, first_name, last_name, email, phone
+    '''
     username = forms.CharField(label="Username", required=True, max_length=100)
     password = forms.CharField(label="Password", required=False, widget = forms.PasswordInput)
     first_name = forms.CharField(label="First Name",required=True, max_length=100)

@@ -6,38 +6,40 @@ import datetime
 from django import forms
 import homepage.models as hmod
 
-
 templater = get_renderer('manager')
+
+'''
+    items: CRUD functions for events
+
+'''
 
 @view_function
 def process_request(request):
     '''
-        Return list of items, sorted by name
+        process_request: Return list of items, sorted by name
     '''
-
     params = {}
 
-
-    # get list of events, sorted by start date
+    # get list of items, sorted by name
     items = hmod.Item.objects.all().order_by('name')
-
 
     # pass list to template
     params['items'] = items
-
 
     return templater.render_to_response(request, 'items.html', params)
 
 
 @view_function
 def create(request):
-
+    '''
+        create: Creates empty item, sends user to edit page
+    '''
     params = {}
 
-    # create event object
+    # create item object
     item = hmod.Item()
 
-    # save new event
+    # save new item
     item.save()
 
     # send user to edit page
@@ -45,17 +47,20 @@ def create(request):
 
 @view_function
 def edit(request):
+    '''
+        edit: Sends form for editing item details
+    '''
 
     params = {}
 
-    # try to get event
+    # try to get item
     try:
         item = hmod.Item.objects.get(id = request.urlparams[0])
     except hmod.Item.DoesNotExist:
-        # redirect to event list page
+        # redirect to item list page
         return HttpResponseRedirect('/manager/items/')
 
-    # initialize event edit form
+    # initialize item edit form
     form = ItemEditForm(initial={
         'name' : item.name,
         'description': item.description,
@@ -74,7 +79,7 @@ def edit(request):
 
             print('Form is valid')
 
-            # item event object
+            # item item object
             item.name = form.cleaned_data['name']
             item.description = form.cleaned_data['description']
             item.value = form.cleaned_data['value']
@@ -83,9 +88,8 @@ def edit(request):
 
             item.save()
 
-            # send to event list page
+            # send to item list page
             return HttpResponseRedirect('/manager/items/')
-
 
     params['form'] = form
 
@@ -93,28 +97,32 @@ def edit(request):
 
 @view_function
 def delete(request):
-
+    '''
+        delete: Deletes selected Item
+    '''
     params = {}
 
-    # try and get event
+    # try and get item
     try:
         item = hmod.Item.objects.get(id=request.urlparams[0])
 
-    # if event does not exist
+    # if item does not exist
     except hmod.Item.DoesNotExist:
 
         # go back to event list page
         return HttpResponseRedirect('/manager/items/')
 
-
-    # else, delete event
+    # else, delete item
     item.delete()
 
-    # return to event list page
+    # return to item list page
     return HttpResponseRedirect('/manager/items/')
 
 
 class ItemEditForm(forms.Form):
+    '''
+        ItemEditForm: Fields to edit item name, description, value, rental price
+    '''
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Lightsaber'}))
     description = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Used by Darth Vader'}))
     value = forms.DecimalField(max_digits=7,decimal_places=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '999.99'}))
