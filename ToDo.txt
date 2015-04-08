@@ -20,7 +20,7 @@ Design:
 [x] LDAP
 [x] show first name in top right nav
 [DAN] ask rod and scott for checkout template
-[BRI] product list css (even out buttons )
+[x] product list css (even out buttons )
 [x] fonts
 [x] images (white background)
 [x] events -> areas -> items for sale (DB foreign keys)
