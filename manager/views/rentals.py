@@ -6,17 +6,22 @@ from django.contrib.auth import authenticate, login, logout
 import homepage.models as hmod
 import datetime
 
-
 templater = get_renderer('manager')
+
+'''
+    rentals: CRUD functions for rentals
+
+'''
 
 @view_function
 def process_request(request):
-
+    '''
+        process_request: Return list of rentals, sorted by due_date
+    '''
     params = {}
 
-    # get list of events, sorted by start date
+    # get list of rentals, sorted by due date
     rentals = hmod.Rental.objects.all().order_by('due_date')
-
 
     # pass list to template
     params['rentals'] = rentals
@@ -25,31 +30,36 @@ def process_request(request):
 
 @view_function
 def create(request):
-
+    '''
+        create: Creates empty rental, sends user to edit page
+    '''
     params = {}
 
-    # create event object
+    # create rental object
     rental = hmod.Rental()
 
-    # save new event
+    # save new rental
     rental.save()
 
-    # send user to edit page
+    # send user to rental page
     return HttpResponseRedirect('/manager/rentals.edit/{}/'.format(rental.id))
 
 @view_function
 def edit(request):
+    '''
+        edit: Sends form for editing rental details
+    '''
 
     params = {}
 
-    # try to get event
+    # try to get rental
     try:
         rental = hmod.Rental.objects.get(id = request.urlparams[0])
     except hmod.Rental.DoesNotExist:
-        # redirect to event list page
+        # redirect to rental list page
         return HttpResponseRedirect('/manager/rentals/')
 
-    # initialize event edit form
+    # initialize rental edit form
     form = RentalEditForm(initial={
         'description': rental.description,
         'rental_date': rental.rental_date,
@@ -70,13 +80,10 @@ def edit(request):
             rental.rental_date = form.cleaned_data['rental_date']
             rental.due_date = form.cleaned_data['due_date']
 
-
-
             rental.save()
 
-            # send to event list page
+            # send to rental list page
             return HttpResponseRedirect('/manager/rentals/')
-
 
     params['form'] = form
 
@@ -84,57 +91,54 @@ def edit(request):
 
 @view_function
 def delete(request):
-
+    '''
+        delete: Deletes selected rentals
+    '''
     params = {}
 
-    # try and get event
+    # try and get rental
     try:
         rental = hmod.Rental.objects.get(id=request.urlparams[0])
 
-    # if event does not exist
+    # if rental does not exist
     except hmod.Rental.DoesNotExist:
 
-        # go back to event list page
+        # go back to rental list page
         return HttpResponseRedirect('/manager/rentals/')
 
 
-    # else, delete event
+    # else, delete rental
     rental.delete()
 
-    # return to event list page
+    # return to rental list page
     return HttpResponseRedirect('/manager/rentals/')
 
 
 @view_function
 def overdue(request):
+    '''
+        overdue: gets list of overdue rentals in intervals of 30 days, 60 days, 90 days
+    '''
 
     params = {}
 
+    # set range intervals
     today = datetime.date.today()
     start_date = (datetime.date.today() - datetime.timedelta(days=60))
 
     # get rentals over 30
     end_date = (datetime.date.today() - datetime.timedelta(days=30))
     over_30 = hmod.Rental.objects.filter(due_date__range = (start_date, end_date), returned=False)
-    # print('start_date:', start_date)
-    # print('end_date:', end_date)
-    # print('over_30:', over_30)
 
     # get rentals over 60
     start_date = (datetime.date.today() - datetime.timedelta(days=90))
     end_date = (datetime.date.today() - datetime.timedelta(days=60))
     over_60 = hmod.Rental.objects.filter(due_date__range = (start_date, end_date), returned=False)
-    # print('over_60:', over_60)
-    # print('start_date:', start_date)
-    # print('end_date:', end_date)
 
     # get rentals over 90
     start_date = (datetime.date.today() - datetime.timedelta(days=365))
     end_date = (datetime.date.today() - datetime.timedelta(days=90))
     over_90 = hmod.Rental.objects.filter(due_date__range = (start_date, end_date), returned=False)
-    # print('over_90:', over_90)
-    # print('start_date:', start_date)
-    # print('end_date:', end_date)
 
     end_date = (datetime.date.today() - datetime.timedelta(days=90))
     overdue_items = hmod.Rental.objects.filter(due_date__range = (start_date, end_date))
@@ -146,9 +150,11 @@ def overdue(request):
     return templater.render_to_response(request, 'rentals.overdue.html', params)
 
 
-
-
 class RentalEditForm(forms.Form):
+    '''
+        RentalEditForm: Fields to edit rental description, rental_date, due_date
+    '''
+
     description = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Not another pony ride'}))
     rental_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '2015-04-05'}))
     due_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '2015-04-05'}))

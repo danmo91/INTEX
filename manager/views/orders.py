@@ -6,63 +6,65 @@ import datetime
 from django import forms
 import homepage.models as hmod
 
-
 templater = get_renderer('manager')
+
+'''
+    orders: CRUD functions for events
+
+'''
 
 @view_function
 def process_request(request):
     '''
-        Return list of orders, sorted by date
+        process_request: Return list of orders, sorted by date
     '''
 
     params = {}
 
     form = OrderEditForm()
 
-
     # get list of events, sorted by start date
     orders = hmod.Order.objects.all().order_by('order_date')
 
-
     # pass list to template
     params['orders'] = orders
-
 
     return templater.render_to_response(request, 'orders.html', params)
 
 
 @view_function
 def create(request):
+    '''
+        create: Creates empty order, sends user to edit page
+    '''
 
     params = {}
 
-    # create event object
+    # create order object
     order = hmod.Order()
 
     order.user = hmod.User()
-    # order.user.first_name = 'None'
-    # order.user.last_name = ''
 
-    # save new event
+    # save new order
     order.save()
-
-    print('new order:', order)
 
     # send user to edit page
     return HttpResponseRedirect('/manager/orders.edit/{}'.format(order.id))
 
 @view_function
 def edit(request):
+    '''
+        edit: Sends form for editing order details
+    '''
 
     params = {}
 
-    # try to get event
+    # try to get order
     try:
         order = hmod.Order.objects.get(id = request.urlparams[0])
     except hmod.Order.DoesNotExist:
-        # redirect to event list page
+        # redirect to order list page
         return HttpResponseRedirect('/manager/orders/')
-
 
     if order.user is not None:
     # initialize event edit form
@@ -92,14 +94,10 @@ def edit(request):
             user_last_name = split_user[1]
 
             user = hmod.User.objects.get(first_name = user_first_name, last_name = user_last_name)
-
-            print('User:', user)
-
             order.user = user
-
             order.save()
 
-            # send to event list page
+            # send to order list page
             return HttpResponseRedirect('/manager/orders/')
 
 
@@ -109,27 +107,33 @@ def edit(request):
 
 @view_function
 def delete(request):
+    '''
+        delete: Deletes selected Order
+    '''
 
     params = {}
 
-    # try and get event
+    # try and get order
     try:
         order = hmod.Order.objects.get(id=request.urlparams[0])
 
-    # if event does not exist
+    # if order does not exist
     except hmod.Order.DoesNotExist:
 
-        # go back to event list page
+        # go back to order list page
         return HttpResponseRedirect('/manager/orders/')
 
 
-    # else, delete event
+    # else, delete order
     order.delete()
 
     # return to event list page
     return HttpResponseRedirect('/manager/orders/')
 
 def get_choices():
+    '''
+        get_choices: get list of users to attatch to order
+    '''
 
     # get list of users
     CHOICES = []
@@ -141,17 +145,17 @@ def get_choices():
     all_users = hmod.User.objects.all()
 
     # get first and last name
-
     for user in all_users:
-
         choice = (user.first_name + ' ' + user.last_name, user.first_name + ' ' + user.last_name)
-
         CHOICES.append(choice)
 
     return CHOICES
 
 
 class OrderEditForm(forms.Form):
+    '''
+        OrderEditForm: Fields to edit order order date, total, user
+    '''
     order_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '2015-04-05'}))
     total = forms.DecimalField(max_digits=7,decimal_places=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '30.25'}))
 

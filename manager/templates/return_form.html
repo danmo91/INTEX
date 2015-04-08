@@ -2,48 +2,40 @@
 
 <%block name="content">
 
-
 <form class=form-return id="returnform" method="POST" action="/manager/return.return_form/${rental.id}">
 
-        %for error in form.non_field_errors():
+%for error in form.non_field_errors():
 
-            ${ error }
+    ${ error }
 
-        %endfor
+%endfor
 
-        ${ form['damage'] }
-        ${ form['damage'].errors }
+    ${ form['damage'] }
+    ${ form['damage'].errors }
 
 
-        <div class="checkboxy">
+    <div class="checkboxy">
+        ${ form['late_fee'] }
+        ${ form['late_fee'].errors}
+    </div>
 
-            ${ form['late_fee'] }
-            ${ form['late_fee'].errors}
+    <div class="checkboxy right">
+        ${ form['damage_fee'] }
+        ${ form['damage_fee'].errors}
+    </div>
 
-        </div>
+    <div class="checkboxy">
+        Waive Fee
+        ${ form['late_fee_waived'] }
+        ${ form['late_fee_waived'].errors }
+    </div>
 
-        <div class="checkboxy right">
-            ${ form['damage_fee'] }
-            ${ form['damage_fee'].errors}
-        </div>
-
-        <div class="checkboxy">
-
-                Waive Fee
-                ${ form['late_fee_waived'] }
-                ${ form['late_fee_waived'].errors }
-
-        </div>
-
-        <div class="checkboxy right">
-
-            Waive Fee
-            ${ form['damage_fee_waived'] }
-            ${ form['damage_fee_waived'].errors }
-
-        </div>
-        <hr>
-
+    <div class="checkboxy right">
+        Waive Fee
+        ${ form['damage_fee_waived'] }
+        ${ form['damage_fee_waived'].errors }
+    </div>
+    <hr>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Return</button>
 
 </form>

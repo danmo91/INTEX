@@ -6,33 +6,35 @@ import datetime
 from django import forms
 import homepage.models as hmod
 
-
 templater = get_renderer('manager')
+
+'''
+    events: CRUD functions for events
+
+'''
 
 @view_function
 def process_request(request):
     '''
-        Return list of events, sorted by start date
-        [] have option to not show old events
+        process_request: Return list of events, sorted by start date
     '''
 
     params = {}
 
-
     # get list of events, sorted by start date
     events = hmod.Event.objects.all().order_by('start')
 
-
     # pass list to template
     params['events'] = events
-
 
     return templater.render_to_response(request, 'events.html', params)
 
 
 @view_function
 def create(request):
-
+    '''
+        create: Creates empty event, sends user to edit page
+    '''
     params = {}
 
     # create event object
@@ -46,7 +48,9 @@ def create(request):
 
 @view_function
 def edit(request):
-
+    '''
+        edit: Sends form for editing event details
+    '''
     params = {}
 
     # try to get event
@@ -62,10 +66,6 @@ def edit(request):
         'description': event.description,
         'start': event.start,
         'end': event.end,
-
-        # implement after we get the drop down working
-        # 'venue': event.venue,
-
     })
 
     # if POST
@@ -99,7 +99,9 @@ def edit(request):
 
 @view_function
 def delete(request):
-
+    '''
+        delete: Deletes selected Event
+    '''
     params = {}
 
     # try and get event
@@ -108,10 +110,8 @@ def delete(request):
 
     # if event does not exist
     except hmod.Event.DoesNotExist:
-
         # go back to event list page
         return HttpResponseRedirect('/manager/events/')
-
 
     # else, delete event
     event.delete()
@@ -121,10 +121,10 @@ def delete(request):
 
 
 class EventEditForm(forms.Form):
+    '''
+        EventEditForm: Fields to edit event name, description, start date, end date
+    '''
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ward BBQ'}))
     description = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "7pm @ Dan's house.  Be there or be [ ]"}))
     start = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '2015-3-12'}))
     end = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '2015-3-13'}))
-
-    # needs to be a drop down to pick from a list of available venues
-    # venue = form.ForeignKey(max_length=100)
