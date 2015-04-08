@@ -28,7 +28,8 @@ def process_request(request):
     event = hmod.Event.objects.get(id = request.urlparams[0])
 
     # get list of areas
-    areas = hmod.Area.objects.all()
+    areas = hmod.Area.objects.filter(event = event)
+
 
     # pass to template
     params['event'] = event

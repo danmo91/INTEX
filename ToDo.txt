@@ -16,10 +16,10 @@ INTEX
 
 Design:
 [SCRUM] Site Design- Homepage (relevant content, logo, about?, contact?)
-[BRI] init_db.py dummy data
+[x] init_db.py dummy data
 [x] LDAP
 [x] show first name in top right nav
-[DAN] ask rod and scott for checkout template
+[x] ask rod and scott for checkout template
 [x] product list css (even out buttons )
 [x] fonts
 [x] images (white background)
@@ -31,7 +31,7 @@ Design:
 
 
 [] Document .py files, view_functions, overview logic
-[BRI] init_db.py
+[x] init_db.py
 [] Error handling (don't touch the DB outside of a try catch)
 [] Manager App- show foreign key, helpful information in tables
 - [] date-picker
