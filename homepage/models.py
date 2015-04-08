@@ -60,6 +60,15 @@ class Area(models.Model):
     def __str__(self):
         return self.name
 
+class Area_Item(models.Model):
+    '''Product'''
+    name = models.TextField(max_length=100)
+    description = models.TextField(max_length=500)
+    price = models.DecimalField(max_digits=7,decimal_places=2, null=True)
+    area = models.ForeignKey(Area)
+
+    def __str__(self):
+        return self.name + ': ' + str(self.price)
 
 class Item(models.Model):
     '''Item'''

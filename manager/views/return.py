@@ -80,11 +80,33 @@ def return_form(request):
 def send_email(request):
     params = {}
 
-    # get list of overdue rentals
-    start = datetime.date.today() - datetime.timedelta(days=365)
-    end = datetime.date.today() - datetime.timedelta(days=1)
-    overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
-    print('over_due:', overdue_rentals)
+    batch = request.urlparams[0]
+    print('batch:', batch)
+
+    overdue_rentals = []
+
+    today = datetime.date.today()
+    start = (datetime.date.today() - datetime.timedelta(days=60))
+
+    if batch == 'thirty':
+        # get list of overdue rentals
+        end = (datetime.date.today() - datetime.timedelta(days=30))
+        overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
+        print('over_30:', overdue_rentals)
+
+    if batch == 'sixty':
+        # get list of overdue rentals
+        start = (datetime.date.today() - datetime.timedelta(days=90))
+        end = (datetime.date.today() - datetime.timedelta(days=60))
+        overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
+        print('over_60:', overdue_rentals)
+
+    if batch == 'ninety':
+        # get list of overdue rentals
+        start = (datetime.date.today() - datetime.timedelta(days=365))
+        end = (datetime.date.today() - datetime.timedelta(days=90))
+        overdue_rentals = hmod.Rental.objects.filter(due_date__range = (start, end), returned=False)
+        print('over_90:', overdue_rentals)
 
 
     # get users emails

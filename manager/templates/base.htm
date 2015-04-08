@@ -1,12 +1,5 @@
 <%inherit file="/base/templates/base.htm" />
 
-<!-- CSS/JS Links that belong only to the homepage app -->
-<%block name="head_links">
-
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.css">
-
-</%block> <!-- head_links -->
 
 <%block name="meta">
 <meta charset="UTF-8">
@@ -53,6 +46,7 @@
                       <li class="divider"></li>
                       <li><a href="/manager/users">Users</a></li>
                       <li class="divider"></li>
+                      <li><a href="/manager/return">Rental Return</a></li>
                       <li><a id="show_overdue_rentals">See Overdue Rentals</a></li>
                     </ul>
                   </li>
@@ -106,14 +100,4 @@
 
   </%block> <!-- footer -->
 
-
-
-
 </%block> <!-- admin -->
-
-<%block name="foot_links">
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
-
-</%block> <!-- foot_links -->

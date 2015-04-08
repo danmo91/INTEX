@@ -213,7 +213,7 @@ for data in [
   ['Breeches', 'Excellent quality colonial breeches made from the finest materials.', 'Clothing', '10.00'],
   ['Tricorne', 'This colonial tricorne adds the finishing touches to any costume.', 'Accesories', '7.00'],
   ['Spectacles', 'People will think you are Ben Franklin himself in these spectacles.' , 'Accesories', '4.00'],
-  ['Almanac', 'This exact replica of Poor Richards Alamanac is in pristine condition..', 'Books', '9.00'],
+  ['Almanac', 'This exact replica of Poor Richards Alamanac is in pristine condition.', 'Books', '9.00'],
 
 ]:
 

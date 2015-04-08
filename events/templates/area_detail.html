@@ -5,8 +5,8 @@
 
             <!-- Jumbotron Header -->
             <header class="jumbotron hero-spacer">
-                <h1>${ event.name }</h1>
-                <p> ${ event.description }</p>
+                <h1>${ area.name }</h1>
+                <p> ${ area.description }</p>
                 <p><a class="btn btn-primary btn-large">'Merica'!</a>
                 </p>
             </header>
@@ -16,7 +16,7 @@
             <!-- Title -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Featured Areas</h3>
+                    <h3>Available Products</h3>
                 </div>
             </div>
             <!-- /.row -->
@@ -24,17 +24,14 @@
             <!-- Page Features -->
             <div class="row text-center items">
 
-              %for area in areas:
+              %for product in products:
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img class="item_image" src="${ STATIC_URL }events/media/area_images/${ area.id}.jpg" alt="">
+                        <img class="item_image" src="${ STATIC_URL }events/media/product_images/${ product.id}.png" alt="">
                         <div class="caption">
-                            <h3>${ area.name }</h3>
-                            <p>${ area.description }</p>
-                            <p>
-                                <a href="/events/area_detail/${ area.id }" class="btn btn-default">More Info</a>
-                            </p>
+                            <h3>${ product.name }</h3>
+                            <p>${ product.description }</p>
                         </div>
                     </div>
                 </div>

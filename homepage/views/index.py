@@ -170,71 +170,69 @@ class LoginForm(forms.Form):
             print('checking ldap')
             # check ldap
 
-            # create server, make connection change server to cheritagefoundation.com later
-            s = Server('www.cheritagefoundation.com', port=12345, get_info=GET_ALL_INFO)
+            try:
+                print('creating server')
+                # create server, make connection change server to cheritagefoundation.com later
+                s = Server('www.cheritagefoundation.com', port=12345, get_info=GET_ALL_INFO)
 
-            c = Connection(
-                  s,
-                  auto_bind = True,
-                  user = self.cleaned_data['username'] + '@cheritagefoundation.local',
-                  password= self.cleaned_data['password'],
-                  authentication=AUTH_SIMPLE,
-                  client_strategy=STRATEGY_SYNC
-                )
-
-            search_results = c.search(
-              search_base = 'CN=Users,DC=cheritagefoundation,DC=local',
-              search_filter = '(samAccountName=' + self.cleaned_data['username'] + ')',
-              search_scope = SEARCH_SCOPE_WHOLE_SUBTREE,
-              attributes = [
-                'givenName',
-                'sn',
-                'l',
-                'streetAddress',
-                'postalCode',
-                'st',
-                'mobile',
-                'info',
-              ])
-
-            # if ldap, then login to ldap
-            if search_results:
-
-                # get info from active directory
-                user_info = c.response[0]['attributes']
-
-                user = hmod.User.objects.get_or_create(
-                    username=self.cleaned_data['username'],
-                    first_name = user_info['givenName'],
-                    last_name = user_info['sn'],
-                    phone = user_info['mobile'],
-                    email = user_info['info'],
+                print('establishing connection')
+                c = Connection(
+                      s,
+                      auto_bind = True,
+                      user = self.cleaned_data['username'] + '@cheritagefoundation.local',
+                      password= self.cleaned_data['password'],
+                      authentication=AUTH_SIMPLE,
+                      client_strategy=STRATEGY_SYNC
                     )
-                print('user:', user)
 
-                user = hmod.User.objects.get(username = self.cleaned_data['username'])
-                print('user:', user)
+                print('connection received, searching results')
+                search_results = c.search(
+                  search_base = 'CN=Users,DC=cheritagefoundation,DC=local',
+                  search_filter = '(samAccountName=' + self.cleaned_data['username'] + ')',
+                  search_scope = SEARCH_SCOPE_WHOLE_SUBTREE,
+                  attributes = [
+                    'givenName',
+                    'sn',
+                    'l',
+                    'streetAddress',
+                    'postalCode',
+                    'st',
+                    'mobile',
+                    'info',
+                  ])
+
+                print('search_results:', search_results)
+                # if ldap, then login to ldap
+                if search_results:
+
+                    # get info from active directory
+                    user_info = c.response[0]['attributes']
+
+                    user = hmod.User.objects.get_or_create(
+                        username=self.cleaned_data['username'],
+                        first_name = user_info['givenName'],
+                        last_name = user_info['sn'],
+                        phone = user_info['mobile'],
+                        email = user_info['info'],
+                        )
+                    print('user:', user)
+
+                    user = hmod.User.objects.get(username = self.cleaned_data['username'])
+                    print('user:', user)
 
 
-                # set password
-                user.set_password(self.cleaned_data['password'])
-                user.save()
+                    # set password
+                    user.set_password(self.cleaned_data['password'])
+                    user.save()
 
-                print('user_info:', user_info)
-                print('first_name:', user_info['givenName'])
-                print('last_name:', user_info['sn'])
-                print('city:', user_info['l'])
-                print('street:', user_info['streetAddress'])
-                print('zip_code:', user_info['postalCode'])
-                print('state:', user_info['st'])
-                print('phone:', user_info['mobile'])
-                print('email:', user_info['info'])
+            except:
 
-            else:
-
+                print('User not in AD')
                 user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
                 if user is None:
                     raise forms.ValidationError("Incorrect username and password")
+                    return self.cleaned_data
+
 
         return self.cleaned_data
 

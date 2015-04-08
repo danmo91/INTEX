@@ -247,8 +247,8 @@ def receipt(request):
 
             items[item.id] = item_container
 
-            # clear out shopping cart
-            del request.session['shopping_cart']
+        # clear out shopping cart
+        del request.session['shopping_cart']
 
     # pass to template
     params['items'] = items
@@ -287,7 +287,7 @@ def receipt(request):
 
 
 
-        message = templater.render(request, 'email_receipt.html', params)
+        message = templater.render(request, 'receipt_email.html', params)
 
         msg = EmailMessage(subject, message, to=to, from_email=from_email)
         msg.content_subtype = 'html'
