@@ -210,10 +210,10 @@ hmod.Product.objects.all().delete()
 
 #Create new Products: name, description, category, current_price
 for data in [
-  ['Poem Journal', 'Jot down anything that comes to your mind.  I sure have a lot.', 'Crafts', '14.00'],
-  ['Ice', 'Cool off with this stuff.  It really has a chill feeling.', 'Household', '2.00'],
-  ['Quill', 'Birds of a feather, make me want to kill them so i can write with their feathers', 'Collectors', '8.00'],
-  ['Abacus', 'Count better than anyone', 'Business', '13.00'],
+  ['Breeches', 'Excellent quality colonial breeches made from the finest materials.', 'Clothing', '10.00'],
+  ['Tricorne', 'This colonial tricorne adds the finishing touches to any costume.', 'Accesories', '7.00'],
+  ['Spectacles', 'People will think you are Ben Franklin himself in these spectacles.' , 'Accesories', '4.00'],
+  ['Almanac', 'This exact replica of Poor Richards Alamanac is in pristine condition.', 'Books', '9.00'],
 
 ]:
 
@@ -224,30 +224,6 @@ for data in [
     p.current_price = data[3]
 
     p.save()
-
-####################################### Area_item #######################################
-
-#Delete old Area_Items
-hmod.Area_Item.objects.all().delete()
-
-#Create new Area_Items: name, description, price, area
-
-# Bakery
-for data in [
-    ['Twisted Bread Loaf', 'Hearty and rustic, baked from the fire', '3.99','4'],
-    ['Strawberry Jam', 'Just like grandma made', '2.99','4'],
-    ['Flat Bread Loaf', 'Tasty loaf often used for religious purposes', '1.99','4'],
-    ['Butter Knife', 'Spread goodness everywhere', '5.99','4'],
-
-]:
-
-    a = hmod.Area_Item()
-    a.name = data[0]
-    a.description = data[1]
-    a.price = data[2]
-    a.area = hmod.Area.objects.get(id = data[3])
-
-    a.save()
 
 ####################################### Rentals #######################################
 

@@ -16,7 +16,6 @@ Sprint3:
 INTEX
 
 Design:
-
 [SCRUM] Site Design- Homepage (relevant content, logo, about?, contact?)
 [BRI] init_db.py dummy data
 [x] LDAP
@@ -24,13 +23,12 @@ Design:
 [DAN] ask rod and scott for checkout template
 [BRI] product list css (even out buttons )
 [x] fonts
-[BRI] images (white background)
-[x] events -> areas -> items for sale (DB foreign keys)
-[x] overdue rentals (30,60,90) tabs
-[x] fix menu bar (accessing menus from everywhere)
+[x] images (white background)
+[DAN] events -> areas -> items for sale (DB foreign keys)
+[DAN] overdue rentals (30,60,90) tabs
+[BRI] fix menu bar (accessing menus from everywhere)
 [DAN] rental return layout (boostrap switch)
-[x] email template for rental overdue
-
+[DAN] email template for rental overdue
 
 
 [] Document .py files, view_functions, overview logic
