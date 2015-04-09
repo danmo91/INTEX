@@ -1,27 +1,43 @@
 $(function() {
 
-  // notify- welcome to homepage
-  $.notify({
 
-    // options
-    icon: 'glyphicon glyphicon-star',
-    title: '<strong>Welcome</strong>',
-    message: 'to the Colonial Heritage Foundation',
+    // get username
+    var username;
 
-  },{
+    $.ajax({
+        url: '/homepage/index.get_username/',
+        success: function(data) {
+            console.log('data', data)
+            username = data
 
-    // settings
-    offset: {
-      x: 50,
-      y: 75,
-    },
-    animate: {
-      enter: 'animated fadeInRight',
-      exit: 'animated fadeOutRight'
-    },
-    delay: 2500,
+            // notify- welcome to homepage
+            $.notify({
 
-  }); // notify
+              // options
+              icon: 'glyphicon glyphicon-star',
+              title: '<strong>Welcome </strong>' + '<strong>' + username + '</strong>',
+              message: 'to the Colonial Heritage Foundation',
+
+            },{
+
+              // settings
+              offset: {
+                x: 50,
+                y: 75,
+              },
+              animate: {
+                enter: 'animated fadeInRight',
+                exit: 'animated fadeOutRight'
+              },
+              delay: 2500,
+
+            }); // notify
+        }
+
+    });
+
+
+
 
 
   // modal to view overdue rentals

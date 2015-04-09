@@ -34,6 +34,21 @@ def process_request(request):
 
     return templater.render_to_response(request, 'index.html', params)
 
+@view_function
+def get_username(request):
+    '''
+        get_username: Returns the username of the user logged in
+
+    '''
+
+    print(request.user.username)
+
+    username = {
+        request.user.first_name
+    }
+
+    return HttpResponse(username)
+
 
 @view_function
 def loginform(request):

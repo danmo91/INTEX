@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    '''User (Extends AbstractUser)'''
+    '''User (Extends AbstractUser)''' 
     #username
     #first_name
     #last_name
