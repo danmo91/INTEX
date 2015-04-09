@@ -28,6 +28,9 @@ body{
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
 }
+.modal-backdrop {
+  z-index:0;
+}
 .breaker{
   margin: 20px;
   border-top: 1px solid grey;
@@ -38,5 +41,5 @@ body{
 
 .modal-content {
     data-backdrop:"false" !important;
-    z-index:1020 !important;
+    z-index:1500 !important;
 }

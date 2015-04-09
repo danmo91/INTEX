@@ -9,7 +9,9 @@ body{
   max-height: 200px;
 
 }
-
+.modal-backdrop {
+  z-index:0;
+}
 
 .item_containter {
 
@@ -33,5 +35,5 @@ body{
 }
 .modal-content {
     data-backdrop:"false" !important;
-    z-index:1020 !important;
+    z-index:1500 !important;
 }

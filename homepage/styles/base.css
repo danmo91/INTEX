@@ -6,7 +6,10 @@ body {
 
 .modal-content {
     data-backdrop:"false";
-    z-index:1020;
+    z-index:1500;
+}
+.modal-backdrop {
+  z-index:0;
 }
 
 [data-notify="progressbar"] {

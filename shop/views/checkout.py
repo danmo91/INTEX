@@ -4,7 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django import forms
 import homepage.models as hmod
 from django.contrib.auth import authenticate, login, logout
-from localflavor.us.us_states import STATE_CHOICES
 import requests
 import datetime
 from django.core.mail import send_mail, EmailMessage
