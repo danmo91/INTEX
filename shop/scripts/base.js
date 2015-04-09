@@ -43,6 +43,8 @@ $(function() {
       onShow: function(dlg) {
         $('.button-panel').find('.btn').addClass('pull-right btn-warning')
         $('.button-panel').css({height: "60px"})
+        $('.modal-content').modal("show")
+        $('.modal-content').css('z-index','1020')
       },
     }); // load modal
   }); // click

@@ -1,5 +1,9 @@
 $(function() {
 
+
+    $('.modal-content').prop('data-backdrop','false')
+    $('.modal-content').prop('z-index','1020')
+
   // Delete from cart
   $('.delete_from_cart').on('click', function() {
 
@@ -21,6 +25,8 @@ $(function() {
       onShow: function(dlg) {
         $('.button-panel').find('.btn').addClass('pull-right btn-warning')
         $('.button-panel').css({height: "60px"})
+        $('.modal-content').modal("show")
+        $('.modal-content').css('z-index','1020')
       },
 
     }); // loadmodal

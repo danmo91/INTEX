@@ -38,3 +38,7 @@
 .lengthy {
   height:400px;
 }
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

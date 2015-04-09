@@ -23,3 +23,7 @@
     margin-left:70px;
 
 }
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

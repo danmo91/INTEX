@@ -4,6 +4,11 @@ body {
 
 }
 
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}
+
 [data-notify="progressbar"] {
   display: none;
 	/*margin-bottom: 0px;

@@ -35,3 +35,8 @@ body{
   text-align: center;
   font-size: 20px;
 }
+
+.modal-content {
+    data-backdrop:"false" !important;
+    z-index:1020 !important;
+}

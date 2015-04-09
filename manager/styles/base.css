@@ -18,3 +18,8 @@
   margin-right: 10%;
 
 }
+
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

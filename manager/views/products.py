@@ -1,7 +1,6 @@
 from django_mako_plus.controller.router import get_renderer
 from django_mako_plus.controller import view_function
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from datetimewidget.widgets import DateWidget
 import datetime
 from django import forms
 import homepage.models as hmod
@@ -95,9 +94,9 @@ def edit(request):
 
 @view_function
 def delete(request):
-'''
-    delete: Deletes selected Product
-'''
+    '''
+        delete: Deletes selected Product
+    '''
     params = {}
 
     # try and get product

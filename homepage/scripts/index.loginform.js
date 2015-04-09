@@ -19,5 +19,5 @@ $(function() {
         width: '500px',
       }); // loadmodal
   }); // click
-  
+
 }); // Ready

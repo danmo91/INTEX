@@ -31,3 +31,7 @@ body{
   height: 400px;
 
 }
+.modal-content {
+    data-backdrop:"false" !important;
+    z-index:1020 !important;
+}
