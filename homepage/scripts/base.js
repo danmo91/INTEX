@@ -8,7 +8,13 @@ $(function() {
         url: '/homepage/index.get_username/',
         success: function(data) {
             console.log('data', data)
-            username = data
+
+            var username = ""
+            if('first_name' in data){
+                username = data['first_name']
+            }
+
+            console.log('first name:', username)
 
             // notify- welcome to homepage
             $.notify({

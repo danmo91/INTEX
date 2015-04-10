@@ -12,6 +12,7 @@
   <!-- App specific head links can be organized into here -->
     <link href="${STATIC_URL}manager/media/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css">
+
 </%block>
 
 <%block name="admin">
@@ -52,6 +53,7 @@
                       <li class="divider"></li>
                       <li><a href="/manager/return">Rental Return</a></li>
                       <li><a id="show_overdue_rentals">See Overdue Rentals</a></li>
+                      <li><a href="/manager/return.dash">Dashboard</a></li>
                     </ul>
                   </li>
             % endif
@@ -105,4 +107,7 @@
 <%block name="foot_links">
 <script src="${STATIC_URL}manager/media/bootstrap-switch-master/dist/js/bootstrap-switch.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script src="${STATIC_URL}manager/media/Chart_js/src/Chart.Core.js"></script>
+<script src="${STATIC_URL}manager/media/Chart_js/src/Chart.Doughnut.js"></script>
+<script src="${STATIC_URL}manager/media/Chart_js/Chart.js"></script>
 </%block>

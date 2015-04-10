@@ -1,6 +1,6 @@
 from django_mako_plus.controller.router import get_renderer
 from django_mako_plus.controller import view_function
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django import forms
 from django.contrib.auth import authenticate, login, logout
 import homepage.models as hmod
@@ -34,20 +34,21 @@ def process_request(request):
 
     return templater.render_to_response(request, 'index.html', params)
 
-@view_function
+
 def get_username(request):
     '''
         get_username: Returns the username of the user logged in
 
     '''
+    username = {}
 
-    print(request.user.username)
+    if request.user.username != "":
 
-    username = {
-        request.user.first_name
-    }
+        username = {
+            'first_name': request.user.first_name
+        }
 
-    return HttpResponse(username)
+    return JsonResponse(username)
 
 
 @view_function

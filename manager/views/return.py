@@ -28,6 +28,17 @@ def process_request(request):
 
     return templater.render_to_response(request, 'return.html', params)
 
+@view_function
+def dash(request):
+    '''
+        process_request: Return list of rentals that have not been returned
+    '''
+
+    params = {}
+
+
+    return templater.render_to_response(request, 'dash.html', params)
+
 
 @view_function
 def return_form(request):
